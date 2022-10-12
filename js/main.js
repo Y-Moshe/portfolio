@@ -1,8 +1,31 @@
+'use strict'
+
+var gSocials = [
+  { name: 'linkedin', link: 'https://www.linkedin.com/in/moshe-nehemiah-254506155/' },
+  { name: 'stack-overflow', link: 'https://stackoverflow.com/users/9301293/y-moshe' },
+  { name: 'github', link: 'https://github.com/Y-Moshe' }
+]
+
 $(initPage)
 
 function initPage() {
   const projects = getProjects()
   renderProjects(projects)
+
+  renderSocials(gSocials)
+}
+
+function renderSocials(socials) {
+  const socialsHtml = socials.map(social => `
+    <li class="list-inline-item">
+      <a href="${social.link}">
+        <i class="fa fa-${social.name}"></i>
+      </a>
+    </li>
+  `)
+
+  $('#me .social-buttons').html(socialsHtml) // me section
+  $('footer .social-buttons').html(socialsHtml) // footer
 }
 
 function renderProjects(projects) {
