@@ -1,4 +1,5 @@
 'use strict'
+const MY_GMAIL = 'moshe.nehemiah@gmail.com'
 
 var gSocials = [
   { name: 'linkedin', link: 'https://www.linkedin.com/in/moshe-nehemiah-254506155/' },
@@ -69,4 +70,14 @@ function onProjClick(id) {
   $modalBody.find('.published-at').text(new Date(project.publishedAt).toLocaleString())
   $modalBody.find('.btn-group a.btn-dark').attr('href', project.githubUrl)
   $modalBody.find('.btn-group a.btn-success').attr('href', project.url)
+}
+
+function onContactSubmit() {
+  const email = $('#email').val().trim()
+  const subject = $('#subject').val().trim()
+  const message = $('#message').val().trim()
+  const bodyMessage = `You got a new message from ${email}: <br />${message}`
+  
+  const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${MY_GMAIL}&su=${subject}&body=${bodyMessage}`
+  window.open(url)
 }
