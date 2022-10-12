@@ -67,5 +67,6 @@ function onProjClick(id) {
   $modalBody.children('img').attr('src', 'img/portfolio/' + project.id + '.png')
   $modalBody.children('.description').text(project.desc)
   $modalBody.find('.published-at').text(new Date(project.publishedAt).toLocaleString())
-  $modalBody.children('a').attr('href', project.url)
+  $modalBody.find('.btn-group a.btn-dark').attr('href', project.githubUrl)
+  $modalBody.find('.btn-group a.btn-success').attr('href', project.url)
 }
