@@ -78,7 +78,7 @@ function onContactSubmit() {
   const email = $('#email').val().trim()
   const subject = $('#subject').val().trim()
   const message = $('#message').val().trim()
-  const bodyMessage = `You got a new message from ${email}: <br />${message}`
+  const bodyMessage = `You got a new message from ${email}: %0A${message}`
   
   const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${MY_GMAIL}&su=${subject}&body=${bodyMessage}`
   window.open(url)
