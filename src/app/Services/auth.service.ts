@@ -8,7 +8,7 @@ axios.interceptors.request.use((req) => {
   return req
 })
 
-const STORAGE_KEY = 'loggedInUser'
+const STORAGE_KEY = 'authToken'
 
 function signup(user: IUser): Promise<ILoginResponse> {
   return httpService.post<ILoginResponse>('/auth/signup', user)
