@@ -1,0 +1,17 @@
+// Setup
+@import "setup/functions.scss";
+@import "setup/typography.scss";
+@import "setup/variables.scss";
+
+// Basics
+@import 'basics/helpers';
+@import 'basics/layout';
+@import 'basics/base';
+
+// Components
+@import 'components/app-header';
+@import 'components/app-footer';
+
+// Views
+@import 'views/auth-view';
+@import 'views/home-view';
