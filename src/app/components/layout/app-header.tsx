@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useAppSelector, useAppDispatch, selectors, actions } from '@store'
+import { useAppSelector, useAppDispatch, selectors, actions } from '@/store'
 import { useCallback, useMemo } from 'react'
 
 export function AppHeader() {
@@ -15,6 +15,7 @@ export function AppHeader() {
     } catch (error) {
       console.log(error)
     }
+    // eslint-disable-next-line
   }, [])
 
   const authLinks = useMemo(() => {

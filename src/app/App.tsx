@@ -1,14 +1,15 @@
 import { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 
-import { AppHeader, AppFooter } from '@components'
-import { actions, useAppDispatch } from '@store'
+import { AppHeader, AppFooter } from '@/components'
+import { actions, useAppDispatch } from '@/store'
 
 export default function App() {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(actions.loadUser())
+    // eslint-disable-next-line
   }, [])
 
   return (

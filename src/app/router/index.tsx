@@ -1,11 +1,11 @@
 import React, { Suspense } from 'react'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 
-import { Spinner } from '@components'
-import HomeView from '../Views/HomeView'
+import { Spinner } from '@/components'
+import HomeView from '../views/home-view'
 import App from '../App'
 
-const AuthView = React.lazy(() => import('../Views/AuthView'))
+const AuthView = React.lazy(() => import('../views/auth-view'))
 
 export const router = createBrowserRouter([
   {

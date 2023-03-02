@@ -2,8 +2,8 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import { store } from './app/Store'
-import { router } from './app/Router'
+import { store } from '@/store'
+import { router } from '@/router'
 import './index.scss'
 
 import reportWebVitals from './reportWebVitals'

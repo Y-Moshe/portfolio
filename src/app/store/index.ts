@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import authFeature, { IAuthState } from './Features/auth'
 
+import authFeature, { IAuthState } from './features/auth'
 export { useAppDispatch, useAppSelector } from './hooks'
 
 export interface IAppState {

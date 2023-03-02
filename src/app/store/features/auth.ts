@@ -4,9 +4,9 @@ import {
   isAnyOf,
   PayloadAction,
 } from '@reduxjs/toolkit'
-import { authService } from '@services'
-import { ICredentials, IUser } from '@types'
-import { IAppState } from '@store'
+import { authService } from '@/services'
+import { ICredentials, IUser } from '@/types'
+import { IAppState } from '@/store'
 
 export interface IAuthState {
   loggedInUser: IUser | null
@@ -66,7 +66,7 @@ const loadUser = createAsyncThunk(
 )
 
 const authSlice = createSlice({
-  name: 'Auth',
+  name: '[Auth API]',
   initialState,
   reducers: {
     setLoggedInUser: (state, action: PayloadAction<IUser | null>) => {
@@ -109,7 +109,7 @@ const { setLoggedInUser } = authSlice.actions
 const selectLoggedInUser = (state: IAppState) => state.authState.loggedInUser
 const selectIsSubmitting = (state: IAppState) => state.authState.isSubmitting
 
-export default {
+const authFeatures = {
   selectors: {
     selectLoggedInUser,
     selectIsSubmitting,
@@ -123,3 +123,5 @@ export default {
     loadUser,
   },
 }
+
+export default authFeatures

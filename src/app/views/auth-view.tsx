@@ -1,7 +1,7 @@
 import { FormEvent, ChangeEvent, useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAppDispatch, actions, useAppSelector, selectors } from '@store'
-import { ICredentials, IUser } from '@types'
+import { useAppDispatch, actions, useAppSelector, selectors } from '@/store'
+import { ICredentials, IUser } from '@/types'
 
 interface IAuthPageProps {
   isLogin: boolean

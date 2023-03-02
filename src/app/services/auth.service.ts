@@ -1,6 +1,6 @@
 import { storageService } from './storage.service'
 import { httpService, axios } from './http.service'
-import { IUser, ICredentials, IAuthToken, ILoginResponse } from '@types'
+import { IUser, ICredentials, IAuthToken, ILoginResponse } from '@/types'
 
 // Attach Authorization header with token
 axios.interceptors.request.use((req) => {
