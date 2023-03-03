@@ -1,4 +1,4 @@
-# Packages list
+# Added Package list
 - @craco/craco
 - @reduxjs/toolkit
 - axios
@@ -18,16 +18,22 @@
     "eject": "craco eject"
   },
 ```
-And `craco.config.js` created to paths defined below
+And `craco.config.js` added for paths
+```
+const path = require('path')
+module.exports = {
+  webpack: {
+    alias: {
+      '@': path.resolve(__dirname, 'src/app'),
+    },
+  },
+}
+```
 
 ## tsconfig.json paths
 ```
   "baseUrl": ".",
   "paths": {
-    "@components": ["src/Components/index.ts"],
-    "@hooks": ["src/Hooks/index.ts"],
-    "@services": ["src/Services/index.ts"],
-    "@store": ["src/Store/index.ts"],
-    "@types": ["src/Types/index.ts"],
-  }
+    "@/*": ["./src/app/*"],
+  },
 ```
