@@ -1,58 +1,22 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { useAppSelector, useAppDispatch, selectors, actions } from '@/store'
-import { useCallback, useMemo } from 'react'
-
 export function AppHeader() {
-  const navigate = useNavigate()
-  const loggedInUser = useAppSelector(selectors.selectLoggedInUser)
-  const isSubmitting = useAppSelector(selectors.selectIsSubmitting)
-  const dispatch = useAppDispatch()
+  return (
+    <header className='main-header main-layout full' id='head'>
+      <nav className='main-nav'>
+        <a href='#head'>
+          <div className='brand'>Moshe Nehemiah</div>
+        </a>
 
-  const handleLogout = useCallback(async () => {
-    try {
-      await dispatch(actions.logoutUser())
-      navigate('/', { replace: true })
-    } catch (error) {
-      console.log(error)
-    }
-    // eslint-disable-next-line
-  }, [])
-
-  const authLinks = useMemo(() => {
-    if (!loggedInUser)
-      return (
-        <ul className='clean-list d-flex gap-5'>
+        <ul className='clean-list d-flex gap-15'>
           <li>
-            <Link to={'/auth/signup'}>Signup</Link>
+            <a href='#projects'>Projects</a>
           </li>
           <li>
-            <Link to={'/auth/login'}>Login</Link>
+            <a href='#skills'>Skills</a>
+          </li>
+          <li>
+            <a href='#contact'>Contact</a>
           </li>
         </ul>
-      )
-
-    return (
-      <ul className='clean-list d-flex gap-5'>
-        <li>
-          <Link to={'/'}>{loggedInUser.email}</Link>
-        </li>
-        <li>
-          <button type='button' onClick={handleLogout} disabled={isSubmitting}>
-            Logout
-          </button>
-        </li>
-      </ul>
-    )
-  }, [loggedInUser, isSubmitting, handleLogout])
-
-  return (
-    <header className='main-header main-layout full'>
-      <nav className='main-nav'>
-        <Link to={'/'}>
-          <div className='brand'>BRAND LOGO</div>
-        </Link>
-
-        {authLinks}
       </nav>
     </header>
   )

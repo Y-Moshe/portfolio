@@ -1,3 +1,5 @@
 export { AppHeader } from './layout/app-header'
 export { AppFooter } from './layout/app-footer'
-export { Spinner } from './ui/Spinner'
+export { ProjectList } from './ui/project-list/project-list'
+export { ProjectPreview } from './ui/project-list/project-preview/project-preview'
+export { SkillList } from './ui/skill-list/skill-list'

@@ -1,0 +1,22 @@
+[
+  {
+    "title": "CSS3 and SASS",
+    "imgUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg"
+  },
+  {
+    "title": "JavaScript(ES6/7/8)",
+    "imgUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+  },
+  {
+    "title": "TypeScript",
+    "imgUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg"
+  },
+  {
+    "title": "React",
+    "imgUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg"
+  },
+  {
+    "title": "Angular",
+    "imgUrl": "https://camo.githubusercontent.com/9eecc42439347332f256a326363924551042f5b96235f972982512199476611a/68747470733a2f2f616e67756c61722e696f2f6173736574732f696d616765732f6c6f676f732f616e67756c61722f616e67756c61722e737667"
+  }
+]

@@ -39,7 +39,3 @@
 .full {
   grid-column: 1 / -1;
 }
-
-.main-view {
-  min-height: calc(100vh - $headerHeight - $footerHeight);
-}

@@ -1,0 +1,45 @@
+[
+  {
+    "name": "Appsus",
+    "description": "This app is a clone of Gmail and Google Keep combined into one convenient package. It allows you to manage your email and notes all in one place, making it easy to stay organized and on top of your tasks.",
+    "tags": ["Vue (Options API)", "Vue-Router", "Animate.css"],
+    "imgUrls": [
+      "https://raw.githubusercontent.com/Y-Moshe/appsus/main/assets/all-devices-black.png"
+    ],
+    "githubUrl": "https://github.com/Y-Moshe/appsus",
+    "websiteUrl": "https://mirlsmith.github.io/appsus/"
+  },
+  {
+    "name": "Mister tasker",
+    "description": "A priority-queue for tasks, using MongoDB task collection, in this app, the server provides an API for task management (CRUDL) with a real-time interaction!",
+    "tags": [
+      "Vue (Composition API)",
+      "Vue-Router",
+      "Unit-testing",
+      "Backend server",
+      "WebSockets"
+    ],
+    "imgUrls": [
+      "https://raw.githubusercontent.com/Y-Moshe/mister-tasker/master/frontend/src/assets/all-devices-black.png"
+    ],
+    "githubUrl": "https://github.com/Y-Moshe/mister-tasker",
+    "websiteUrl": "https://mister-tasker-8ecc.onrender.com/"
+  },
+  {
+    "name": "Stayby",
+    "description": "Stayby, A pixel perfect web app built with Vue.js v3 inspired by the website Airbnb.com , a marketplace website for hiring and hosting a place to sleep with rich of features such as searching, dashboard page, filtering support, wishlist, trips and more...",
+    "tags": [
+      "Vue (Options API)",
+      "Vuex",
+      "NodeJS",
+      "MongoDB",
+      "Express",
+      "rest API"
+    ],
+    "imgUrls": [
+      "https://camo.githubusercontent.com/09235d0d57cd5e2f322aec71dc475995ede7ea08cc6311bb8de112f8f5754ba2/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f6467637a696d78706f2f696d6167652f75706c6f61642f76313637353632343638352f7374617962792d726561646d652f616c6c2d646576696365732d626c61636b5f6563783775662e706e67"
+    ],
+    "githubUrl": "https://github.com/Y-Moshe/stay-by",
+    "websiteUrl": "https://stay-by.onrender.com/"
+  }
+]

@@ -2,8 +2,29 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
+  font-size: 18px;
+  font-family: League-Spartan, sans-serif;
+  background-color: #d3d3d3;
+
+  &::-webkit-scrollbar {
+    width: 14px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: #4b70b1cc;
+    border-radius: 15px;
+    border: 3px solid white;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #233655cc;
+  }
 }
 
 img {
@@ -13,6 +34,7 @@ img {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 input:focus,

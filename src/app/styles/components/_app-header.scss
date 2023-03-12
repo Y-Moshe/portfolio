@@ -1,6 +1,10 @@
 .main-header {
-  background-color: $headerBackgroundColor;
+  background: #4b70b1cc;
+  color: whitesmoke;
   padding: rem(20px) rem(10px);
+  position: sticky;
+  top: 0;
+  left: 0;
 }
 
 .main-nav {
