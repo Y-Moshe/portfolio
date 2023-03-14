@@ -1,22 +1,102 @@
 [
   {
-    "title": "CSS3 and SASS",
-    "imgUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg"
+    "title": "HTML5",
+    "cssClass": "devicon-html5-plain-wordmark colored"
+  },
+  {
+    "title": "CSS3",
+    "cssClass": "devicon-css3-plain-wordmark colored"
+  },
+  {
+    "title": "SASS",
+    "cssClass": "devicon-sass-original colored"
+  },
+  {
+    "title": "Bootstrap",
+    "cssClass": "devicon-bootstrap-plain-wordmark colored"
   },
   {
     "title": "JavaScript(ES6/7/8)",
-    "imgUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+    "cssClass": "devicon-javascript-plain colored"
+  },
+  {
+    "title": "jQuery",
+    "cssClass": "devicon-jquery-plain-wordmark colored"
   },
   {
     "title": "TypeScript",
-    "imgUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg"
+    "cssClass": "devicon-typescript-plain colored"
   },
   {
     "title": "React",
-    "imgUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg"
+    "cssClass": "devicon-react-original-wordmark colored"
   },
   {
-    "title": "Angular",
-    "imgUrl": "https://camo.githubusercontent.com/9eecc42439347332f256a326363924551042f5b96235f972982512199476611a/68747470733a2f2f616e67756c61722e696f2f6173736574732f696d616765732f6c6f676f732f616e67756c61722f616e67756c61722e737667"
+    "title": "Redux",
+    "cssClass": "devicon-redux-original colored"
+  },
+  {
+    "title": "Angular and NgRx",
+    "cssClass": "devicon-angularjs-plain colored"
+  },
+  {
+    "title": "Vue, Vuex and Pinia",
+    "cssClass": "devicon-vuejs-plain-wordmark colored"
+  },
+  {
+    "title": "C#",
+    "cssClass": "devicon-csharp-plain-wordmark colored"
+  },
+  {
+    "title": ".NET Framework",
+    "cssClass": "devicon-dot-net-plain-wordmark colored"
+  },
+  {
+    "title": "NodeJS",
+    "cssClass": "devicon-nodejs-plain-wordmark colored"
+  },
+  {
+    "title": "Express framework",
+    "cssClass": "devicon-express-original-wordmark colored"
+  },
+  {
+    "title": "Socket.io",
+    "cssClass": "devicon-socketio-original-wordmark colored"
+  },
+  {
+    "title": "MySQL",
+    "cssClass": "devicon-mysql-plain-wordmark colored"
+  },
+  {
+    "title": "SQLite",
+    "cssClass": "devicon-sqlite-plain-wordmark colored"
+  },
+  {
+    "title": "MongoDB",
+    "cssClass": "devicon-mongodb-plain-wordmark colored"
+  },
+  {
+    "title": "VS Code",
+    "cssClass": "devicon-vscode-plain-wordmark colored"
+  },
+  {
+    "title": "Heroku",
+    "cssClass": "devicon-heroku-original-wordmark colored"
+  },
+  {
+    "title": "AWS",
+    "cssClass": "devicon-amazonwebservices-plain-wordmark colored"
+  },
+  {
+    "title": "Git",
+    "cssClass": "devicon-git-plain-wordmark colored"
+  },
+  {
+    "title": "Linux",
+    "cssClass": "devicon-linux-plain colored"
+  },
+  {
+    "title": "Ubuntu",
+    "cssClass": "devicon-ubuntu-plain-wordmark colored"
   }
 ]
