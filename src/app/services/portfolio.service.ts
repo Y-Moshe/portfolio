@@ -5,6 +5,7 @@ import skillsData from '../data/skills.json'
 
 const _projects: IProject[] = projectsData.map((project) => ({
   ...project,
+  imgUrls: project.imgUrls.map((url) => ({ id: uuidv4(), url })),
   _id: uuidv4(),
 }))
 
