@@ -1,15 +1,22 @@
-export interface IProject {
-  _id?: string
+type ImageUrl = {
+  id: string
+  url: string
+}
+
+interface BaseModel {
+  _id: string
+}
+
+export interface IProject extends BaseModel {
   name: string
   description: string
   tags: string[]
-  imgUrls: string[]
+  imgUrls: ImageUrl[]
   githubUrl: string
   websiteUrl: string
 }
 
-export interface ISkill {
-  _id?: string
+export interface ISkill extends BaseModel {
   title: string
-  imgUrl: string
+  cssClass: string
 }
