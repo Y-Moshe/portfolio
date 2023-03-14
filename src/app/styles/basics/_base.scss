@@ -15,7 +15,7 @@ body {
   &::-webkit-scrollbar {
     width: 14px;
   }
-  
+
   &::-webkit-scrollbar-thumb {
     background-color: #4b70b1cc;
     border-radius: 15px;
@@ -35,6 +35,13 @@ img {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 input:focus,
