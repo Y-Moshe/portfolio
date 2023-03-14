@@ -1,0 +1,21 @@
+.project-preview {
+  padding: rem(10px);
+  transition: .3s ease-in-out;
+  cursor: pointer;
+
+  & h1 {
+    margin-block-start: 0;
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.499);
+    color: beige;
+  }
+}
+
+.carousel-dots-controls {
+  background-color: #333333d6;
+  padding: rem(10px) rem(20px);
+  bottom: 0px !important;
+  margin: 0 !important;
+}

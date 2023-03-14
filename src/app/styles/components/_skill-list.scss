@@ -1,0 +1,23 @@
+.skill-list {
+  display: flex;
+  flex-direction: column;
+
+  & ul {
+    font-size: rem(68px);
+    max-width: rem(700px);
+  }
+
+  & h1 {
+    text-align: center;
+  }
+}
+
+.skill-item {
+  padding: rem(5px) rem(10px);
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: 0.3s ease-in;
+
+  &:hover {
+    background-color: rgba(128, 128, 128, 0.5);
+  }
+}

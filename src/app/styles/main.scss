@@ -10,7 +10,17 @@
 
 // Components
 @import 'components/app-header';
-@import 'components/app-footer';
+@import 'components/contact-form';
+@import 'components/project-preview';
+@import 'components/skill-list';
+@import 'components/project-modal';
+@import 'components/about-section';
 
-// App
-@import './app';
+.app-background {
+  background-image: url('../../assets/img/app-bg.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
