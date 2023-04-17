@@ -80,10 +80,6 @@
     "cssClass": "devicon-vscode-plain-wordmark colored"
   },
   {
-    "title": "Heroku",
-    "cssClass": "devicon-heroku-original-wordmark colored"
-  },
-  {
     "title": "AWS",
     "cssClass": "devicon-amazonwebservices-plain-wordmark colored"
   },
