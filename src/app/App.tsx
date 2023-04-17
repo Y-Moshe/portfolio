@@ -8,6 +8,7 @@ import {
   ContactForm,
   ProjectModal,
   AboutSection,
+  ProjectEdit,
 } from '@/components'
 import { portfolioService } from '@/services'
 import { IProject, ISkill } from '@/types'
@@ -75,6 +76,7 @@ export default function App() {
 
       <ParallaxLayer offset={3} speed={0.1} className='main-layout'>
         <ContactForm />
+        {/* <ProjectEdit /> */}
       </ParallaxLayer>
     </Parallax>
   )
