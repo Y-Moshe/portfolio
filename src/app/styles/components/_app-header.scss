@@ -5,11 +5,23 @@
   width: 100%;
   border-bottom: 2px solid rgba($color: #000000, $alpha: 0.3);
   font-family: League-Spartan-Bold;
-  font-size: rem(20px);
+  font-size: rem(24px);
   font-weight: 500;
 }
 
 .main-nav {
   display: flex;
   justify-content: space-between;
+  
+  & .brand,
+  & ul li {
+    cursor: pointer;
+  }
+  
+  & .brand:hover,
+  & ul li:hover {
+    transition: 0.3s;
+    color: orange !important;
+    text-decoration: underline;
+  }
 }
