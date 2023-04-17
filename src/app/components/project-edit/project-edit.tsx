@@ -1,9 +1,32 @@
 import { Button, Form, Input, Select } from 'antd'
 import { DefaultOptionType } from 'antd/es/select'
 
-const tagsOptions: DefaultOptionType[] = ['A', 'B', 'C', 'D', 'E', 'F'].map(
-  (t) => ({ label: t, value: t })
-)
+const tagsOptions: DefaultOptionType[] = [
+  'Sass/Scss',
+  'Bootstrap',
+  'jQuery',
+  'TypeScript',
+  'React',
+  'Redux',
+  'Angular',
+  'NgRx Store',
+  'Vuex',
+  'Pinia',
+  'Vue (Options API)',
+  'Vue (Composition API)',
+  '.NET/.NET Core',
+  'C#',
+  'NodeJS',
+  'Socket.io',
+  'WebSockets',
+  'Animate.css',
+  'Unit-testing',
+  'Backend server',
+  'MongoDB',
+  'Sqlite',
+  'Expressjs',
+  'rest API',
+].map((t) => ({ label: t, value: t }))
 
 const initialFormValue = {
   name: '',
