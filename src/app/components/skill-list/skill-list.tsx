@@ -13,11 +13,9 @@ export function SkillList({ skills }: SkillListProps) {
     () => ({
       from: {
         opacity: 0,
-        scale: 1.2,
       },
       to: {
         opacity: 1,
-        scale: 1,
       },
       reset: true,
     }),
@@ -30,8 +28,7 @@ export function SkillList({ skills }: SkillListProps) {
         <h1>Skills</h1>
         <a.ul
           className='d-flex justify-content-center flex-wrap gap-10 m-auto'
-          ref={skillsRef}
-        >
+          ref={skillsRef}>
           {skillsInView &&
             skillsStyle.map((style, i) => (
               <Tooltip title={skills[i].title} key={skills[i]._id}>
