@@ -29,8 +29,7 @@ export function ProjectModal(props: ProjectModalProps) {
             <Button type='text' size='large' icon={<BsGithub size={24} />} />
           </a>
         </footer>
-      }
-    >
+      }>
       <div className='container'>
         <div className='project-gallery'>
           {project?.imgUrls.map((img) => (

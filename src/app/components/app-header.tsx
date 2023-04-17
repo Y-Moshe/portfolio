@@ -56,8 +56,7 @@ export function AppHeader(props: HeaderProps) {
     <a.header
       className='main-header main-layout full'
       style={initAnimation}
-      id='head'
-    >
+      id='head'>
       <nav className='main-nav'>
         <div className='brand' onClick={() => handleLinkClick(0)}>
           Moshe Nehemiah
@@ -68,8 +67,7 @@ export function AppHeader(props: HeaderProps) {
             <a.li
               style={springStyle}
               key={links[i].label}
-              onClick={() => handleLinkClick(links[i].page)}
-            >
+              onClick={() => handleLinkClick(links[i].page)}>
               {links[i].label}
             </a.li>
           ))}

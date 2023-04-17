@@ -76,8 +76,7 @@ export function ProjectPreview(props: ProjectPreviewProps) {
   return (
     <article
       className='project-preview container'
-      onClick={() => props.onClick(project._id)}
-    >
+      onClick={() => props.onClick(project._id)}>
       <div className='row'>
         <div className={`col-md-6 ${getOrder()} d-flex flex-column`}>
           <a.h1 ref={titleRef} style={titleSprings}>
@@ -88,8 +87,7 @@ export function ProjectPreview(props: ProjectPreviewProps) {
           </a.p>
           <a.ul
             className='d-flex justify-content-center flex-wrap gap-5 flex-grow-1'
-            ref={tagsRef}
-          >
+            ref={tagsRef}>
             {tagsInView &&
               tagsStyle.map((tagStyle, i) => (
                 <a.li key={project.tags[i]} style={tagStyle}>

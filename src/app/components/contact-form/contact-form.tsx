@@ -38,29 +38,25 @@ export function ContactForm() {
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 16 }}
           initialValues={{ ...initialFormValue }}
-          onFinish={handleSubmit}
-        >
+          onFinish={handleSubmit}>
           <Form.Item
             label='Full Name'
             name='fullName'
-            rules={[{ required: true, message: 'Full name is required!' }]}
-          >
+            rules={[{ required: true, message: 'Full name is required!' }]}>
             <Input type='text' />
           </Form.Item>
 
           <Form.Item
             label='Subject'
             name='subject'
-            rules={[{ required: true, message: 'Subject is required!' }]}
-          >
+            rules={[{ required: true, message: 'Subject is required!' }]}>
             <Input type='text' />
           </Form.Item>
 
           <Form.Item
             label='Message'
             name='body'
-            rules={[{ required: true, message: 'Message is required!' }]}
-          >
+            rules={[{ required: true, message: 'Message is required!' }]}>
             <Input.TextArea rows={10} />
           </Form.Item>
 
@@ -71,8 +67,7 @@ export function ContactForm() {
               loading={isPending}
               size='large'
               shape='round'
-              block
-            >
+              block>
               Contact
             </Button>
           </Form.Item>
@@ -88,8 +83,7 @@ export function ContactForm() {
             <li style={{ color: '#0077B5' }}>
               <a
                 className='hover-effect'
-                href='https://www.linkedin.com/in/moshe-nehemiah-254506155/'
-              >
+                href='https://www.linkedin.com/in/moshe-nehemiah-254506155/'>
                 <BsLinkedin />
               </a>
             </li>

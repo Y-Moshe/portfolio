@@ -4,7 +4,7 @@ export function AboutSection() {
       <div className='profile'>
         Moshe Nehemiah - English / Hebrew
         <span>summary</span>
-      Arrow down
+        Arrow down
       </div>
     </section>
   )
