@@ -181,7 +181,7 @@ export function ProjectEdit() {
               size='large'
               shape='round'
               block>
-              Generate JSON
+              Save
             </Button>
             <Button
               disabled={form.getFieldValue('_id')}
