@@ -46,7 +46,7 @@ export function ProjectModal(props: ProjectModalProps) {
           </Carousel>
         )}
 
-        {project?.description.split('\n').map((paragraph, i) => (
+        {project?.description.split('#n').map((paragraph, i) => (
           <p key={i}>{paragraph}</p>
         ))}
         <ul className='d-flex justify-content-center flex-wrap gap-5'>
