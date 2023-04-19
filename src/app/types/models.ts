@@ -1,8 +1,3 @@
-type ImageUrl = {
-  id: string
-  url: string
-}
-
 interface BaseModel {
   _id: string
 }
@@ -11,7 +6,7 @@ export interface IProject extends BaseModel {
   name: string
   description: string
   tags: string[]
-  imgUrls: ImageUrl[]
+  imgUrls: string[]
   githubUrl: string
   websiteUrl: string
 }
