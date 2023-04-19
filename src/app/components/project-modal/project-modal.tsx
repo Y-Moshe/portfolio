@@ -32,21 +32,23 @@ export function ProjectModal(props: ProjectModalProps) {
       }>
       <div className='container'>
         <div className='project-gallery'>
-          {project?.imgUrls.map((img) => (
-            <Image key={img.id} src={img.url} alt='First project picture' />
+          {project?.imgUrls.map((imgUrl, i) => (
+            <Image key={i} src={imgUrl} alt='First project picture' />
           ))}
         </div>
         {isTablet && (
           <Carousel dots={{ className: 'carousel-dots-controls' }} draggable>
-            {project?.imgUrls.map((img) => (
-              <div key={img.id}>
-                <Image src={img.url} alt='Project img' />
+            {project?.imgUrls.map((imgUrl, i) => (
+              <div key={i}>
+                <Image src={imgUrl} alt='Project img' />
               </div>
             ))}
           </Carousel>
         )}
 
-        <p>{project?.description}</p>
+        {project?.description.split('\n').map((paragraph, i) => (
+          <p key={i}>{paragraph}</p>
+        ))}
         <ul className='d-flex justify-content-center flex-wrap gap-5'>
           {project?.tags.map((tag) => (
             <li key={tag}>

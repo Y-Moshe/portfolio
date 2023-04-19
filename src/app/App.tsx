@@ -14,6 +14,8 @@ import { portfolioService } from '@/services'
 import { IProject, ISkill } from '@/types'
 import pkg from '../../package.json'
 
+const { REACT_APP_IS_EDIT_MODE } = process.env
+
 export default function App() {
   const [projectList, setProjectList] = useState<IProject[]>([])
   const [selectedProject, setSelectedProject] = useState<IProject>()
@@ -24,13 +26,25 @@ export default function App() {
 
   useEffect(() => {
     console.log('App running v' + pkg.version)
-
-    setProjectList(portfolioService.getProjects())
-    setSkillList(portfolioService.getSkills())
+    loadAppContent()
   }, [])
 
+  const loadAppContent = async () => {
+    try {
+      const projects = await portfolioService.getProjects()
+      const skills = await portfolioService.getSkills()
+
+      setProjectList(projects)
+      setSkillList(skills)
+    } catch (error) {
+      console.log('Failed to get app content')
+      console.log(error)
+    }
+  }
+
   const handleProjectClicked = (projectId: string) => {
-    const project = portfolioService.getProject(projectId)
+    // const project = portfolioService.getProject(projectId)
+    const project = projectList.find((p) => p._id === projectId)
     setSelectedProject(project)
     setIsModalOpen(true)
   }
@@ -75,8 +89,7 @@ export default function App() {
       </ParallaxLayer>
 
       <ParallaxLayer offset={3} speed={0.1} className='main-layout'>
-        <ContactForm />
-        {/* <ProjectEdit /> */}
+        {REACT_APP_IS_EDIT_MODE ? <ProjectEdit /> : <ContactForm />}
       </ParallaxLayer>
     </Parallax>
   )

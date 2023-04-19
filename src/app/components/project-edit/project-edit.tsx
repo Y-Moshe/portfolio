@@ -1,5 +1,8 @@
+import { eventBus, portfolioService } from '@/services'
+import { events } from '@/services/event-bus.service'
 import { Button, Form, Input, Select } from 'antd'
 import { DefaultOptionType } from 'antd/es/select'
+import { useEffect } from 'react'
 
 const tagsOptions: DefaultOptionType[] = [
   'Sass/Scss',
@@ -29,6 +32,7 @@ const tagsOptions: DefaultOptionType[] = [
 ].map((t) => ({ label: t, value: t }))
 
 const initialFormValue = {
+  _id: '',
   name: '',
   description: '',
   tags: [],
@@ -40,14 +44,34 @@ const initialFormValue = {
 export function ProjectEdit() {
   const [form] = Form.useForm()
 
+  useEffect(() => {
+    eventBus.on(events.EDIT_PROJECT, (project: any) => {
+      console.log(project)
+      delete project.id
+
+      form.setFieldsValue({ ...project })
+    })
+  }, [])
+
   const handleTagsChange = (tags: string[]) => {
     form.setFieldValue('tags', tags)
   }
 
   const handleSubmit = (values: any) => {
-    const text = JSON.stringify(values, null, 2)
-    console.log(text)
-    navigator.clipboard.writeText(text)
+    // Old technique
+    // const text = JSON.stringify(values, null, 2)
+    // console.log(text)
+    // navigator.clipboard.writeText(text)
+    console.log(values._id)
+    console.log(form.getFieldValue('_id'))
+
+    values._id
+      ? portfolioService.updateProject(values)
+      : portfolioService.addProject(values)
+  }
+
+  const handleDeleteProject = () => {
+    portfolioService.deleteProject(form.getFieldValue('_id'))
   }
 
   return (
@@ -72,6 +96,9 @@ export function ProjectEdit() {
           wrapperCol={{ span: 16 }}
           initialValues={{ ...initialFormValue }}
           onFinish={handleSubmit}>
+          <Form.Item label='Project Id' name='_id'>
+            <Input type='text' disabled />
+          </Form.Item>
           <Form.Item
             label='Project Name'
             name='name'
@@ -155,6 +182,17 @@ export function ProjectEdit() {
               shape='round'
               block>
               Generate JSON
+            </Button>
+            <Button
+              disabled={form.getFieldValue('_id')}
+              style={{ marginTop: 10 }}
+              type='primary'
+              danger
+              htmlType='button'
+              size='large'
+              onClick={handleDeleteProject}
+              block>
+              Delete project
             </Button>
           </Form.Item>
         </Form>

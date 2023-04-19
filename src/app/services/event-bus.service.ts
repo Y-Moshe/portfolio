@@ -19,3 +19,6 @@ function createEventEmitter() {
 }
 
 export const eventBus = createEventEmitter()
+export const events = {
+  EDIT_PROJECT: 'EDIT_PROJECT',
+}

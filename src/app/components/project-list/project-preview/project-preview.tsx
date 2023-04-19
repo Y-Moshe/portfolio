@@ -1,9 +1,14 @@
 import { Button, Image, Tag } from 'antd'
 import { BsGithub } from 'react-icons/bs'
+import { AiFillEdit } from 'react-icons/ai'
 import { FiLink } from 'react-icons/fi'
 import { useInView, animated as a, useTrail } from '@react-spring/web'
 import { IProject } from '@/types'
 import { useMediaQuery } from 'react-responsive'
+import { eventBus } from '@/services'
+import { events } from '@/services/event-bus.service'
+
+const { REACT_APP_IS_EDIT_MODE } = process.env
 
 interface ProjectPreviewProps {
   project: IProject
@@ -73,6 +78,10 @@ export function ProjectPreview(props: ProjectPreviewProps) {
   const isDesktop = useMediaQuery({ minWidth: 768 })
   const getOrder = () => (props.isEven && isDesktop ? 'order-2' : 'order-0')
 
+  const handleEditProject = () => {
+    eventBus.emit(events.EDIT_PROJECT, project)
+  }
+
   return (
     <article
       className='project-preview container'
@@ -103,16 +112,19 @@ export function ProjectPreview(props: ProjectPreviewProps) {
             <a href={project.githubUrl} target='_blank' rel='noreferrer'>
               <Button type='text' size='large' icon={<BsGithub size={24} />} />
             </a>
+            {REACT_APP_IS_EDIT_MODE && (
+              <Button
+                type='text'
+                size='large'
+                icon={<AiFillEdit size={24} onClick={handleEditProject} />}
+              />
+            )}
           </div>
         </div>
 
         <div className='col-md-6 order-1'>
           <a.div ref={imgRef} style={imgSprings}>
-            <Image
-              src={project.imgUrls[0].url}
-              alt='Project img'
-              preview={false}
-            />
+            <Image src={project.imgUrls[0]} alt='Project img' preview={false} />
           </a.div>
         </div>
       </div>
