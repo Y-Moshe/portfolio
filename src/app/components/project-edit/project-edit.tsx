@@ -62,8 +62,6 @@ export function ProjectEdit() {
     // const text = JSON.stringify(values, null, 2)
     // console.log(text)
     // navigator.clipboard.writeText(text)
-    console.log(values._id)
-    console.log(form.getFieldValue('_id'))
 
     values._id
       ? portfolioService.updateProject(values)
