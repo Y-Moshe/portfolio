@@ -8,7 +8,7 @@ interface ProjectListProps {
 
 export function ProjectList(props: ProjectListProps) {
   return (
-    <section id='projects' className='project-list d-flex flex-column gap-15'>
+    <section id='projects' className='full project-list d-flex flex-column gap-15'>
       {props.projects.map((p, idx) => (
         <ProjectPreview
           key={p._id}

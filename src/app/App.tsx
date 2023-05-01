@@ -58,23 +58,23 @@ export default function App() {
         project={selectedProject}
       />
 
-      <ParallaxLayer
+      {/* <ParallaxLayer
         sticky={{ start: 0, end: 4 }}
         style={{ height: 'max-content' }}>
         <AppHeader parallax={parallax.current!} />
-      </ParallaxLayer>
+      </ParallaxLayer> */}
 
       <ParallaxLayer
         offset={0}
         speed={isDesktop ? 1 : 0.5}
         className='main-layout'>
-        <AboutSection />
+        <AboutSection parallax={parallax.current!} />
       </ParallaxLayer>
 
       <ParallaxLayer
         offset={1}
         speed={isDesktop ? 1 : 0.5}
-        className='main-layout'>
+        className='main-layout full'>
         <ProjectList
           projects={projectList}
           onProjectClick={handleProjectClicked}
