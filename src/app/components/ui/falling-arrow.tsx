@@ -5,7 +5,7 @@ interface FallingArrowProps {
 
 export function FallingArrow(props: FallingArrowProps) {
   return (
-    <div className={props.className + ' falling-arrow'} onClick={props.onClick}>
+    <div className={'falling-arrow ' + props.className} onClick={props.onClick}>
       <span></span>
       <span></span>
       <span></span>

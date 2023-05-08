@@ -15,7 +15,12 @@ const links = [
   },
 ]
 
-export function AppHeader() {
+interface IAppHeaderProps {
+  activePage: number
+  onLinkClick: (page: number) => void
+}
+
+export function AppHeader(props: IAppHeaderProps) {
   const [linksSpring, linksAnimCtrl] = useTrail(3, () => ({
     from: {
       y: -100,
@@ -43,26 +48,26 @@ export function AppHeader() {
     onResolve: () => linksAnimCtrl.resume(),
   }))
 
-  const handleLinkClick = (page: number) => {
-    // props.parallax.scrollTo(page)
+  const getActivePageClass = (page: number) => {
+    return props.activePage === page ? 'active-page' : ''
   }
 
   return (
-    <a.header
-      className='main-header main-layout full'
-      style={initAnimation}
-      id='head'>
+    <a.header className='main-header main-layout full' style={initAnimation}>
       <nav className='main-nav'>
-        <div className='brand' onClick={() => handleLinkClick(0)}>
+        <div
+          className={`brand ${getActivePageClass(0)}`}
+          onClick={() => props.onLinkClick(0)}>
           Moshe Nehemiah
         </div>
 
         <ul className='d-flex gap-15'>
           {linksSpring.map((springStyle, i) => (
             <a.li
+              className={getActivePageClass(links[i].page)}
               style={springStyle}
               key={links[i].label}
-              onClick={() => handleLinkClick(links[i].page)}>
+              onClick={() => props.onLinkClick(links[i].page)}>
               {links[i].label}
             </a.li>
           ))}

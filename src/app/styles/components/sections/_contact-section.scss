@@ -1,8 +1,7 @@
 .contact-section {
+  @extend .section-view;
+
   border: 2px solid rgba(0, 0, 0, 0.3);
   padding: rem(10px);
   border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

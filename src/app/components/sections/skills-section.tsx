@@ -23,7 +23,7 @@ export function SkillsSection({ skills }: SkillListProps) {
   )
 
   return (
-    <section id='skills' className='skills-section section-view'>
+    <section className='skills-section section-view'>
       <div className='container'>
         <h1>Skills</h1>
         <a.ul

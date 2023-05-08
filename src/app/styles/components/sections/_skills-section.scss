@@ -1,6 +1,5 @@
 .skills-section {
-  display: flex;
-  flex-direction: column;
+  @extend .section-view;
 
   & ul {
     font-size: rem(68px);
