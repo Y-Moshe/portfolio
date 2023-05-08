@@ -1,5 +1,5 @@
 import { Tooltip } from 'antd'
-import { animated as a, useInView, useSprings } from '@react-spring/web'
+import { animated as a, useInView, useTrail } from '@react-spring/web'
 import { ISkill } from '@/types'
 
 interface SkillListProps {
@@ -8,16 +8,23 @@ interface SkillListProps {
 
 export function SkillsSection({ skills }: SkillListProps) {
   const [skillsRef, skillsInView] = useInView()
-  const [skillsStyle] = useSprings(
+  const [skillsStyle] = useTrail(
     skills.length,
     () => ({
       from: {
         opacity: 0,
+        scale: 1.2,
+        x: -50,
       },
       to: {
         opacity: 1,
+        scale: 1,
+        x: 0,
       },
       reset: true,
+      config: {
+        duration: 50,
+      },
     }),
     [skillsInView]
   )
@@ -29,14 +36,15 @@ export function SkillsSection({ skills }: SkillListProps) {
         <a.ul
           className='d-flex justify-content-center flex-wrap gap-10 m-auto'
           ref={skillsRef}>
-          {skillsInView &&
-            skillsStyle.map((style, i) => (
-              <Tooltip title={skills[i].title} key={skills[i]._id}>
-                <a.li className='skill-item' style={style}>
+          {skillsStyle.map((style, i) => (
+            <a.span style={style} key={skills[i]._id}>
+              <Tooltip title={skills[i].title}>
+                <a.li className='skill-item'>
                   <i className={skills[i].cssClass}></i>
                 </a.li>
               </Tooltip>
-            ))}
+            </a.span>
+          ))}
         </a.ul>
       </div>
     </section>
