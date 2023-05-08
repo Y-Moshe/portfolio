@@ -21,7 +21,7 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState<IProject>()
   const [skillList, setSkillList] = useState<ISkill[]>([])
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const parallax = useRef<IParallax>(null)
+  const parallaxRef = useRef<IParallax>(null)
   const isDesktop = useMediaQuery({ minWidth: 768 })
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function App() {
   }
 
   return (
-    <Parallax pages={4} ref={parallax}>
+    <Parallax pages={4} ref={parallaxRef}>
       <div className='app-background'></div>
       <ProjectModal
         isOpen={isModalOpen}
@@ -61,14 +61,14 @@ export default function App() {
       {/* <ParallaxLayer
         sticky={{ start: 0, end: 4 }}
         style={{ height: 'max-content' }}>
-        <AppHeader parallax={parallax.current!} />
+        {parallaxRef.current && <AppHeader parallax={parallaxRef.current} />}
       </ParallaxLayer> */}
 
       <ParallaxLayer
         offset={0}
         speed={isDesktop ? 1 : 0.5}
         className='main-layout'>
-        <AboutSection parallax={parallax.current!} />
+        {parallaxRef.current && <AboutSection parallax={parallaxRef.current} />}
       </ParallaxLayer>
 
       <ParallaxLayer

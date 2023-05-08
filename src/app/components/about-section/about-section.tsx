@@ -1,12 +1,19 @@
 import { IParallax } from '@react-spring/parallax'
+import { TypeAnimation } from 'react-type-animation'
 import { FallingArrow } from '@/components'
-import pictureUrl from '../../../assets/img/me.jpg'
+import { useState } from 'react'
 
 interface AboutSectionProps {
   parallax: IParallax
 }
 
 export function AboutSection(props: AboutSectionProps) {
+  const [isGreetingFinished, setIsGreetingFinished] = useState(false)
+
+  const scrollToProjects = () => {
+    props.parallax.scrollTo(1)
+  }
+
   return (
     <section className='about-section full'>
       <div className='profile-wrapper'>
@@ -17,37 +24,44 @@ export function AboutSection(props: AboutSectionProps) {
               </div>
             </div> */}
             <div className='offset-lg-3 col-lg-9'>
-              <h3>Hi! I'm Moshe Nehemiah.</h3>
-              <p>
-                A Full Stack / Frontend Developer with an experience in writing
-                complex web apps using Vue, React, Angular, .Net C#, and NodeJS.
-              </p>
-
-              <p>
-                A great problem solver, self-driven, and a quick learner.
-                Follows by best practices.
-              </p>
-              <p>
-                My experience has been gained through learning and building
-                projects, which are listed below.
-              </p>
-
-              <p>
-                Graduate of the Coding Academy course - an intensive coding
-                Bootcamp (640 hours) that qualifies Full stack developers.
-              </p>
-
-              <h3>Latest project: Toyz shop - in the projects section.</h3>
+              <TypeAnimation
+                wrapper='h3'
+                sequence={[
+                  'Hi!',
+                  500,
+                  "Hi! I'm Moshe Nehemiah.",
+                  () => setIsGreetingFinished(true),
+                ]}
+                cursor={false}
+              />
+              {isGreetingFinished && (
+                <TypeAnimation
+                  wrapper='p'
+                  style={{ whiteSpace: 'pre-line' }}
+                  sequence={[
+                    'Full-stack developer',
+                    `A Full-stack/frontend developer with experience in writing complex web apps using the most popular frameworks and technologies (Vue, React, Angular, .NET C#, and NodeJS Express).
+                  
+                  Known as a great problem-solver, self-driven, and a quick learner. Follows by best practices.\n
+                  Highly motivated, focused, and well-organized with good interpersonal and communication skills.\n
+                  
+                  My experience has been gained through learning and building projects, which are listed next.\n
+                  Graduate of the Coding Academy course - an intensive coding Bootcamp (640 hours) that qualifies Full stack developers.\n
+                  
+                  My Latest project: Toyz shop - in the listed projects below.`,
+                    1000,
+                    scrollToProjects,
+                  ]}
+                  speed={80}
+                />
+              )}
             </div>
           </div>
         </div>
       </div>
 
       <div className='gradient-background'></div>
-      <FallingArrow
-        className='arrow-down'
-        onClick={() => props.parallax.scrollTo(1)}
-      />
+      <FallingArrow className='arrow-down' onClick={scrollToProjects} />
     </section>
   )
 }
