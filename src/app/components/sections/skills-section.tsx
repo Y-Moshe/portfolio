@@ -6,7 +6,7 @@ interface SkillListProps {
   skills: ISkill[]
 }
 
-export function SkillList({ skills }: SkillListProps) {
+export function SkillsSection({ skills }: SkillListProps) {
   const [skillsRef, skillsInView] = useInView()
   const [skillsStyle] = useSprings(
     skills.length,
@@ -23,7 +23,7 @@ export function SkillList({ skills }: SkillListProps) {
   )
 
   return (
-    <section id='skills' className='skill-list'>
+    <section id='skills' className='skills-section section-view'>
       <div className='container'>
         <h1>Skills</h1>
         <a.ul

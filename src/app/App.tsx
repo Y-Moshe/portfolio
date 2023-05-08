@@ -1,20 +1,22 @@
 import { useEffect, useRef, useState } from 'react'
-import { useMediaQuery } from 'react-responsive'
-import { IParallax, Parallax, ParallaxLayer } from '@react-spring/parallax'
 import {
+  // eslint-disable-next-line
   AppHeader,
-  ProjectList,
-  SkillList,
-  ContactForm,
+  ProjectsSection,
+  SkillsSection,
+  ContactSection,
   ProjectModal,
   AboutSection,
   ProjectEdit,
 } from '@/components'
+import { IParallax, Parallax, ParallaxLayer } from '@react-spring/parallax'
+import { useMediaQuery } from 'react-responsive'
+
 import { portfolioService } from '@/services'
 import { IProject, ISkill } from '@/types'
 import pkg from '../../package.json'
 
-const { REACT_APP_IS_EDIT_MODE } = process.env
+const REACT_APP_IS_EDIT_MODE = JSON.parse(process.env.REACT_APP_IS_EDIT_MODE)
 
 export default function App() {
   const [projectList, setProjectList] = useState<IProject[]>([])
@@ -28,6 +30,17 @@ export default function App() {
     console.log('App running v' + pkg.version)
     loadAppContent()
   }, [])
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScrolling)
+    return () => {
+      window.removeEventListener('scroll', handleScrolling)
+    }
+  }, [])
+
+  const handleScrolling = (e: any) => {
+    // console.log(e);
+  }
 
   const loadAppContent = async () => {
     try {
@@ -59,10 +72,10 @@ export default function App() {
       />
 
       {/* <ParallaxLayer
-        sticky={{ start: 0, end: 4 }}
-        style={{ height: 'max-content' }}>
-        {parallaxRef.current && <AppHeader parallax={parallaxRef.current} />}
-      </ParallaxLayer> */}
+          sticky={{ start: 0, end: 4 }}
+          style={{ height: 'max-content' }}>
+          {parallaxRef.current && <AppHeader parallax={parallaxRef.current} />}
+        </ParallaxLayer> */}
 
       <ParallaxLayer
         offset={0}
@@ -75,7 +88,7 @@ export default function App() {
         offset={1}
         speed={isDesktop ? 1 : 0.5}
         className='main-layout full'>
-        <ProjectList
+        <ProjectsSection
           projects={projectList}
           onProjectClick={handleProjectClicked}
         />
@@ -85,11 +98,11 @@ export default function App() {
         offset={2}
         speed={isDesktop ? 1 : 0.5}
         className='main-layout'>
-        <SkillList skills={skillList} />
+        <SkillsSection skills={skillList} />
       </ParallaxLayer>
 
       <ParallaxLayer offset={3} speed={0.1} className='main-layout'>
-        {REACT_APP_IS_EDIT_MODE ? <ProjectEdit /> : <ContactForm />}
+        {REACT_APP_IS_EDIT_MODE ? <ProjectEdit /> : <ContactSection />}
       </ParallaxLayer>
     </Parallax>
   )

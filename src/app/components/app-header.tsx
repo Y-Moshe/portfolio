@@ -1,4 +1,3 @@
-import { IParallax } from '@react-spring/parallax'
 import { animated as a, useSpring, useTrail } from '@react-spring/web'
 
 const links = [
@@ -16,11 +15,7 @@ const links = [
   },
 ]
 
-interface HeaderProps {
-  parallax: IParallax
-}
-
-export function AppHeader(props: HeaderProps) {
+export function AppHeader() {
   const [linksSpring, linksAnimCtrl] = useTrail(3, () => ({
     from: {
       y: -100,
@@ -49,7 +44,7 @@ export function AppHeader(props: HeaderProps) {
   }))
 
   const handleLinkClick = (page: number) => {
-    props.parallax.scrollTo(page)
+    // props.parallax.scrollTo(page)
   }
 
   return (

@@ -1,13 +1,14 @@
-import { IParallax } from '@react-spring/parallax'
-import { TypeAnimation } from 'react-type-animation'
-import { FallingArrow } from '@/components'
 import { useState } from 'react'
+import { TypeAnimation } from 'react-type-animation'
+import { IParallax } from '@react-spring/parallax'
 
-interface AboutSectionProps {
+import { FallingArrow } from '@/components'
+
+interface IAboutSectionProps {
   parallax: IParallax
 }
 
-export function AboutSection(props: AboutSectionProps) {
+export function AboutSection(props: IAboutSectionProps) {
   const [isGreetingFinished, setIsGreetingFinished] = useState(false)
 
   const scrollToProjects = () => {
@@ -15,7 +16,7 @@ export function AboutSection(props: AboutSectionProps) {
   }
 
   return (
-    <section className='about-section full'>
+    <section className='about-section section-view full'>
       <div className='profile-wrapper'>
         <div className='container'>
           <div className='row'>

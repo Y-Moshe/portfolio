@@ -1,10 +1,11 @@
 import { Button, Image, Tag } from 'antd'
+import { useMediaQuery } from 'react-responsive'
 import { BsGithub } from 'react-icons/bs'
 import { AiFillEdit } from 'react-icons/ai'
 import { FiLink } from 'react-icons/fi'
 import { useInView, animated as a, useTrail } from '@react-spring/web'
+
 import { IProject } from '@/types'
-import { useMediaQuery } from 'react-responsive'
 import { eventBus } from '@/services'
 import { events } from '@/services/event-bus.service'
 

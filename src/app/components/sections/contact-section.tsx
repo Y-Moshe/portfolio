@@ -8,7 +8,7 @@ const initialFormValue = {
   body: '',
 }
 
-export function ContactForm() {
+export function ContactSection() {
   const [isPending, setIsPending] = useState(false)
   const [form] = Form.useForm()
 
@@ -27,7 +27,7 @@ export function ContactForm() {
   }
 
   return (
-    <section className='d-flex flex-column justify-content-center'>
+    <section className='contact-section section-view'>
       <fieldset className='contact-form'>
         <legend>
           <h1>Contact</h1>

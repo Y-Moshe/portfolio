@@ -1,14 +1,14 @@
 import { IProject } from '@/types'
-import { ProjectPreview } from './project-preview/project-preview'
+import { ProjectPreview } from '../ui/project-preview'
 
 interface ProjectListProps {
   projects: IProject[]
   onProjectClick: (projectId: string) => void
 }
 
-export function ProjectList(props: ProjectListProps) {
+export function ProjectsSection(props: ProjectListProps) {
   return (
-    <section id='projects' className='full project-list d-flex flex-column gap-15'>
+    <section id='projects' className='projects-section section-view full'>
       {props.projects.map((p, idx) => (
         <ProjectPreview
           key={p._id}

@@ -1,8 +1,9 @@
-import { eventBus, portfolioService } from '@/services'
-import { events } from '@/services/event-bus.service'
+import { useEffect } from 'react'
 import { Button, Form, Input, Select } from 'antd'
 import { DefaultOptionType } from 'antd/es/select'
-import { useEffect } from 'react'
+
+import { eventBus, portfolioService } from '@/services'
+import { events } from '@/services/event-bus.service'
 
 const tagsOptions: DefaultOptionType[] = [
   'Sass/Scss',
@@ -46,11 +47,10 @@ export function ProjectEdit() {
 
   useEffect(() => {
     eventBus.on(events.EDIT_PROJECT, (project: any) => {
-      console.log(project)
       delete project.id
-
       form.setFieldsValue({ ...project })
     })
+    // eslint-disable-next-line
   }, [])
 
   const handleTagsChange = (tags: string[]) => {
@@ -73,7 +73,7 @@ export function ProjectEdit() {
   }
 
   return (
-    <section className='d-flex flex-column justify-content-center'>
+    <section className='project-edit section-view d-flex flex-column justify-content-center'>
       <fieldset className='contact-form'>
         <legend>
           <h1>Product Edit</h1>

@@ -1,8 +1,9 @@
 import { Button, Modal, Tag, Image, Carousel } from 'antd'
+import { useMediaQuery } from 'react-responsive'
 import { BsGithub } from 'react-icons/bs'
 import { FiLink } from 'react-icons/fi'
+
 import { IProject } from '@/types'
-import { useMediaQuery } from 'react-responsive'
 
 interface ProjectModalProps {
   project?: IProject
