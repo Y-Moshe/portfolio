@@ -26,8 +26,6 @@ export default function App() {
 
   const parallaxRef = useRef<IParallax>(null)
   const isDesktop = useMediaQuery({ minWidth: 768 })
-
-  const [isScrolled, setIsScrolled] = useState(false)
   const [currentPage, setCurrentPage] = useState(0)
 
   useEffect(() => {
@@ -40,6 +38,7 @@ export default function App() {
     return () => {
       window.removeEventListener('wheel', handleWheelScroll)
     }
+    // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
@@ -47,11 +46,12 @@ export default function App() {
   }, [currentPage])
 
   const handleWheelScroll = (e: WheelEvent) => {
-    setIsScrolled(true)
-
-    e.deltaY > 0
-      ? setCurrentPage((prev) => (prev === 3 ? 3 : ++prev))
-      : setCurrentPage((prev) => (prev === 0 ? 0 : --prev))
+    // Auto scrolling by mouse wheel enabled only for desktops
+    if (isDesktop) {
+      e.deltaY > 0
+        ? setCurrentPage((prev) => (prev === 3 ? 3 : ++prev))
+        : setCurrentPage((prev) => (prev === 0 ? 0 : --prev))
+    }
   }
 
   const loadAppContent = async () => {
@@ -96,7 +96,11 @@ export default function App() {
         offset={0}
         speed={isDesktop ? 1 : 0.5}
         className='main-layout'>
-        {parallaxRef.current && <AboutSection isScrolled={isScrolled} onLinkClick={handlePageChange} />}
+        {parallaxRef.current && (
+          <AboutSection
+            onLinkClick={handlePageChange}
+          />
+        )}
       </ParallaxLayer>
 
       {/* Projects section */}
@@ -119,7 +123,7 @@ export default function App() {
       </ParallaxLayer>
 
       {/* Contact / Project edit sections */}
-      <ParallaxLayer offset={3} speed={0.1} className='main-layout'>
+      <ParallaxLayer offset={3} speed={0.5} className='main-layout'>
         {REACT_APP_IS_EDIT_MODE ? <ProjectEdit /> : <ContactSection />}
       </ParallaxLayer>
 
