@@ -47,16 +47,19 @@ export function ProjectModal(props: ProjectModalProps) {
           </Carousel>
         )}
 
-        {project?.description.split('#n').map((paragraph, i) => (
-          <p key={i}>{paragraph}</p>
-        ))}
-        <ul className='d-flex justify-content-center flex-wrap gap-5'>
+        <ul className='d-flex justify-content-center flex-wrap gap-5 m-3'>
           {project?.tags.map((tag) => (
             <li key={tag}>
               <Tag color='#597ef7'>{tag}</Tag>
             </li>
           ))}
         </ul>
+
+        <div
+          className='mt-3'
+          dangerouslySetInnerHTML={{
+            __html: project?.description || '',
+          }}></div>
       </div>
     </Modal>
   )
