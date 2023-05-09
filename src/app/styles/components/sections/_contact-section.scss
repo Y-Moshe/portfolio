@@ -1,7 +1,36 @@
 .contact-section {
   @extend .section-view;
+  padding-bottom: 100px;
+  
+  @media (min-width: 992px) {
+    padding-bottom: 15px;
+  }
 
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  padding: rem(10px);
-  border-radius: 20px;
+  & .form-wrapper {
+    --s: 15px; /* control the size */
+    padding: var(--s);
+    border: calc(2 * var(--s)) solid #0000;
+    outline: 1px solid #000;
+    outline-offset: calc(-1 * var(--s));
+    background: conic-gradient(from 90deg at 1px 1px, #0000 25%, #000 0);
+  }
+
+  & .row {
+    background-color: white;
+  }
+
+  & .contact-img-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  & .contact-methods li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: rem(18px);
+  }
 }
