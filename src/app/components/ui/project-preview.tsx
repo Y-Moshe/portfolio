@@ -21,7 +21,6 @@ export function ProjectPreview(props: ProjectPreviewProps) {
   const [imgRef, imgSprings] = useInView(() => ({
     from: {
       opacity: 0,
-      x: 100,
     },
     to: {
       opacity: 1,

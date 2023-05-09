@@ -4,7 +4,6 @@ import { TypeAnimation } from 'react-type-animation'
 import { FallingArrow } from '@/components'
 
 interface IAboutSectionProps {
-  isScrolled: boolean
   onLinkClick: (page: number) => void
 }
 
@@ -51,9 +50,6 @@ export function AboutSection(props: IAboutSectionProps) {
                   
                     My Latest project: Toyz shop - in the listed projects below.`,
                     1000,
-                    () => {
-                      !props.isScrolled && scrollToProjects()
-                    },
                   ]}
                   speed={80}
                 />
