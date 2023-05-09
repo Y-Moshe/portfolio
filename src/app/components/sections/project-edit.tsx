@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Form, Input, Select } from 'antd'
 import { DefaultOptionType } from 'antd/es/select'
 
@@ -44,6 +44,7 @@ const initialFormValue = {
 
 export function ProjectEdit() {
   const [form] = Form.useForm()
+  const [isPending, setIsPending] = useState(false)
 
   useEffect(() => {
     eventBus.on(events.EDIT_PROJECT, (project: any) => {
@@ -57,24 +58,32 @@ export function ProjectEdit() {
     form.setFieldValue('tags', tags)
   }
 
-  const handleSubmit = (values: any) => {
-    // Old technique
-    // const text = JSON.stringify(values, null, 2)
-    // console.log(text)
-    // navigator.clipboard.writeText(text)
+  const handleSubmit = async (values: any) => {
+    let action = portfolioService.addProject
+    if (values._id) action = portfolioService.updateProject
 
-    values._id
-      ? portfolioService.updateProject(values)
-      : portfolioService.addProject(values)
+    try {
+      setIsPending(true)
+      await action(values)
+      form.resetFields()
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsPending(false)
+    }
   }
 
   const handleDeleteProject = () => {
-    portfolioService.deleteProject(form.getFieldValue('_id'))
+    setIsPending(true)
+
+    portfolioService
+      .deleteProject(form.getFieldValue('_id'))
+      .finally(() => setIsPending(false))
   }
 
   return (
     <section className='project-edit section-view d-flex flex-column justify-content-center'>
-      <fieldset className='contact-form'>
+      <fieldset className='w-100'>
         <legend>
           <h1>Product Edit</h1>
         </legend>
@@ -178,6 +187,7 @@ export function ProjectEdit() {
               htmlType='submit'
               size='large'
               shape='round'
+              loading={isPending}
               block>
               Save
             </Button>
@@ -188,6 +198,7 @@ export function ProjectEdit() {
               danger
               htmlType='button'
               size='large'
+              loading={isPending}
               onClick={handleDeleteProject}
               block>
               Delete project

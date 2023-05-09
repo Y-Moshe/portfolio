@@ -10,14 +10,16 @@ export function ProjectsSection(props: ProjectListProps) {
   return (
     <section className='projects-section section-view full'>
       <div className='container'>
-        {props.projects.map((p, idx) => (
-          <ProjectPreview
-            key={p._id}
-            project={p}
-            isEven={(idx + 1) % 2 === 0}
-            onClick={(id) => props.onProjectClick(id)}
-          />
-        ))}
+        <div className='row gy-3'>
+          {props.projects.map((p) => (
+            <div className='col-md-4' key={p._id}>
+              <ProjectPreview
+                project={p}
+                onClick={(id) => props.onProjectClick(id)}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )

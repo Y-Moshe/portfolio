@@ -1,15 +1,17 @@
 .project-preview {
   padding: rem(10px);
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: rem(10px);
+  height: 100%;
+  background-color: var(--bs-light);
+  // For carousel arrows
+  padding-inline: rem(25px);
 
   & h1 {
     margin-block-start: 0;
-  }
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.499);
-    color: white;
   }
 }
 
@@ -18,4 +20,30 @@
   padding: rem(10px) rem(20px);
   bottom: 0px !important;
   margin: 0 !important;
+}
+
+.ant-carousel .slick-prev,
+.ant-carousel .slick-next {
+  font-size: inherit;
+  color: currentColor;
+  z-index: 222;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.ant-carousel .slick-prev {
+  inset-inline-start: -22px;
+}
+.ant-carousel .slick-next {
+  inset-inline-end: -22px;
+}
+
+.project-preview:hover .slick-prev,
+.project-preview:hover .slick-next {
+  opacity: 1;
+}
+
+.ant-carousel .slick-next:hover,
+.ant-carousel .slick-prev:hover {
+  color: gray;
 }

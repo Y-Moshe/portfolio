@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   // eslint-disable-next-line
   AppHeader,
@@ -17,6 +17,15 @@ import { IProject, ISkill } from '@/types'
 import pkg from '../../package.json'
 
 const REACT_APP_IS_EDIT_MODE = JSON.parse(process.env.REACT_APP_IS_EDIT_MODE)
+
+declare global {
+  interface Window {
+    MyApp: {
+      isDesktop: boolean
+      isModalOpen: boolean
+    }
+  }
+}
 
 export default function App() {
   const [projectList, setProjectList] = useState<IProject[]>([])
@@ -45,14 +54,22 @@ export default function App() {
     parallaxRef.current?.scrollTo(currentPage)
   }, [currentPage])
 
-  const handleWheelScroll = (e: WheelEvent) => {
+  useEffect(() => {
+    window.MyApp = {
+      isDesktop,
+      isModalOpen,
+    }
+  }, [isDesktop, isModalOpen])
+
+  const handleWheelScroll = useCallback((e: WheelEvent) => {
     // Auto scrolling by mouse wheel enabled only for desktops
-    if (isDesktop) {
+
+    if (window.MyApp?.isDesktop && !window.MyApp?.isModalOpen) {
       e.deltaY > 0
         ? setCurrentPage((prev) => (prev === 3 ? 3 : ++prev))
         : setCurrentPage((prev) => (prev === 0 ? 0 : --prev))
     }
-  }
+  }, [])
 
   const loadAppContent = async () => {
     try {
@@ -96,11 +113,7 @@ export default function App() {
         offset={0}
         speed={isDesktop ? 1 : 0.5}
         className='main-layout'>
-        {parallaxRef.current && (
-          <AboutSection
-            onLinkClick={handlePageChange}
-          />
-        )}
+        {parallaxRef.current && <AboutSection onLinkClick={handlePageChange} />}
       </ParallaxLayer>
 
       {/* Projects section */}

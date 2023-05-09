@@ -1,6 +1,5 @@
-import { Button, Image, Tag } from 'antd'
-import { useMediaQuery } from 'react-responsive'
-import { BsGithub } from 'react-icons/bs'
+import { Button, Carousel, Image, Tag } from 'antd'
+import { BsGithub, BsArrowLeftCircle, BsArrowRightCircle } from 'react-icons/bs'
 import { AiFillEdit } from 'react-icons/ai'
 import { FiLink } from 'react-icons/fi'
 import { useInView, animated as a, useTrail } from '@react-spring/web'
@@ -13,25 +12,10 @@ const { REACT_APP_IS_EDIT_MODE } = process.env
 
 interface ProjectPreviewProps {
   project: IProject
-  isEven: boolean
   onClick: (projectId: string) => void
 }
 
 export function ProjectPreview(props: ProjectPreviewProps) {
-  const [imgRef, imgSprings] = useInView(() => ({
-    from: {
-      opacity: 0,
-    },
-    to: {
-      opacity: 1,
-      x: 0,
-    },
-    config: {
-      mass: 2,
-      tension: 350,
-    },
-  }))
-
   const [titleRef, titleSprings] = useInView(() => ({
     from: {
       opacity: 0,
@@ -43,17 +27,6 @@ export function ProjectPreview(props: ProjectPreviewProps) {
     },
     config: {
       duration: 500,
-    },
-  }))
-
-  const [descRef, descSprings] = useInView(() => ({
-    from: {
-      opacity: 0,
-      x: -50,
-    },
-    to: {
-      opacity: 1,
-      x: 0,
     },
   }))
 
@@ -75,9 +48,6 @@ export function ProjectPreview(props: ProjectPreviewProps) {
     [tagsInView]
   )
 
-  const isDesktop = useMediaQuery({ minWidth: 768 })
-  const getOrder = () => (props.isEven && isDesktop ? 'order-2' : 'order-0')
-
   const handleEditProject = () => {
     eventBus.emit(events.EDIT_PROJECT, project)
   }
@@ -86,58 +56,73 @@ export function ProjectPreview(props: ProjectPreviewProps) {
     <article
       className='project-preview'
       onClick={() => props.onClick(project._id)}>
-      <div className='container'>
-        <div className='row'>
-          <div className={`col-md-6 ${getOrder()} d-flex flex-column`}>
-            <a.h1 ref={titleRef} style={titleSprings}>
-              {project.name}
-            </a.h1>
-            <a.p ref={descRef} style={descSprings}>
-              {project.description}
-            </a.p>
-            <a.ul
-              className='d-flex justify-content-center flex-wrap gap-5 flex-grow-1'
-              ref={tagsRef}>
-              {tagsInView &&
-                tagsStyle.map((tagStyle, i) => (
-                  <a.li key={project.tags[i]} style={tagStyle}>
-                    <Tag color='#597ef7'>{project.tags[i]}</Tag>
-                  </a.li>
-                ))}
-            </a.ul>
+      <a.h1 ref={titleRef} style={titleSprings}>
+        {project.name}
+      </a.h1>
 
-            <div className='ant-btn-group' onClick={(e) => e.stopPropagation()}>
-              <a href={project.websiteUrl} target='_blank' rel='noreferrer'>
-                <Button type='text' size='large' icon={<FiLink size={24} />} />
-              </a>
-              <a href={project.githubUrl} target='_blank' rel='noreferrer'>
-                <Button
-                  type='text'
-                  size='large'
-                  icon={<BsGithub size={24} />}
-                />
-              </a>
-              {REACT_APP_IS_EDIT_MODE && (
-                <Button
-                  type='text'
-                  size='large'
-                  icon={<AiFillEdit size={24} onClick={handleEditProject} />}
-                />
-              )}
-            </div>
-          </div>
+      <div onClick={(e) => e.stopPropagation()}>
+        <Carousel
+          dots={{ className: 'carousel-dots-controls' }}
+          arrows={true}
+          prevArrow={<SlickPrevArrow />}
+          nextArrow={<SlickNextArrow />}
+          draggable>
+          {project?.imgUrls.map((imgUrl, i) => (
+            <Image key={i} src={imgUrl} alt='Project img' preview={false} />
+          ))}
+        </Carousel>
+      </div>
 
-          <div className='col-md-6 order-1'>
-            <a.div ref={imgRef} style={imgSprings}>
-              <Image
-                src={project.imgUrls[0]}
-                alt='Project img'
-                preview={false}
-              />
-            </a.div>
-          </div>
-        </div>
+      <a.ul
+        className='d-flex flex-wrap gap-5 flex-grow-1'
+        ref={tagsRef}>
+        {tagsInView &&
+          tagsStyle.map((tagStyle, i) => (
+            <a.li key={project.tags[i]} style={tagStyle}>
+              <Tag color='#597ef7'>{project.tags[i]}</Tag>
+            </a.li>
+          ))}
+      </a.ul>
+
+      <div className='ant-btn-group' onClick={(e) => e.stopPropagation()}>
+        <a href={project.websiteUrl} target='_blank' rel='noreferrer'>
+          <Button type='text' size='large' icon={<FiLink size={24} />} />
+        </a>
+        <a href={project.githubUrl} target='_blank' rel='noreferrer'>
+          <Button type='text' size='large' icon={<BsGithub size={24} />} />
+        </a>
+        {REACT_APP_IS_EDIT_MODE && (
+          <Button
+            type='text'
+            size='large'
+            icon={<AiFillEdit size={24} onClick={handleEditProject} />}
+          />
+        )}
       </div>
     </article>
+  )
+}
+
+function SlickNextArrow(props: any) {
+  const { className, style, onClick } = props
+  return (
+    <BsArrowRightCircle
+      fontSize={48}
+      className={className}
+      style={{ ...style, display: 'block' }}
+      onClick={onClick}
+    />
+  )
+}
+
+function SlickPrevArrow(props: any) {
+  const { className, style, onClick } = props
+  return (
+    <BsArrowLeftCircle
+      fontSize={48}
+      className={className}
+      style={{ ...style, display: 'block' }}
+      onClick={onClick}
+    />
   )
 }
