@@ -1,5 +1,4 @@
 import { Button, Modal, Tag, Image, Carousel } from 'antd'
-import { useMediaQuery } from 'react-responsive'
 import { BsGithub } from 'react-icons/bs'
 import { FiLink } from 'react-icons/fi'
 
@@ -12,7 +11,6 @@ interface ProjectModalProps {
 }
 
 export function ProjectModal(props: ProjectModalProps) {
-  const isTablet = useMediaQuery({ maxWidth: 576 })
   const { project } = props
 
   return (
@@ -37,15 +35,17 @@ export function ProjectModal(props: ProjectModalProps) {
             <Image key={i} src={imgUrl} alt='First project picture' />
           ))}
         </div>
-        {isTablet && (
-          <Carousel dots={{ className: 'carousel-dots-controls' }} draggable>
-            {project?.imgUrls.map((imgUrl, i) => (
-              <div key={i}>
-                <Image src={imgUrl} alt='Project img' />
-              </div>
-            ))}
-          </Carousel>
-        )}
+
+        <Carousel
+          dots={{ className: 'carousel-dots-controls' }}
+          className='d-sm-none'
+          draggable>
+          {project?.imgUrls.map((imgUrl, i) => (
+            <div key={i}>
+              <Image src={imgUrl} alt='Project img' />
+            </div>
+          ))}
+        </Carousel>
 
         <ul className='d-flex justify-content-center flex-wrap gap-5 m-3'>
           {project?.tags.map((tag) => (

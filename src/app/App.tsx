@@ -9,7 +9,6 @@ import {
   AboutSection,
   ProjectEdit,
 } from '@/components'
-import { useMediaQuery } from 'react-responsive'
 import { Parallax } from 'react-parallax'
 
 import { portfolioService } from '@/services'
