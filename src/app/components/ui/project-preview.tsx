@@ -1,5 +1,9 @@
 import { Button, Carousel, Image, Tag } from 'antd'
-import { BsGithub, BsArrowLeftCircle, BsArrowRightCircle } from 'react-icons/bs'
+import {
+  BsGithub,
+  BsArrowLeftCircleFill,
+  BsArrowRightCircleFill,
+} from 'react-icons/bs'
 import { AiFillEdit } from 'react-icons/ai'
 import { FiLink } from 'react-icons/fi'
 import { useInView, animated as a, useTrail } from '@react-spring/web'
@@ -9,6 +13,7 @@ import { eventBus } from '@/services'
 import { events } from '@/services/event-bus.service'
 
 const { REACT_APP_IS_EDIT_MODE } = process.env
+const MAX_RENDERED_TAGS = 5
 
 interface ProjectPreviewProps {
   project: IProject
@@ -33,7 +38,9 @@ export function ProjectPreview(props: ProjectPreviewProps) {
   const { project } = props
   const [tagsRef, tagsInView] = useInView()
   const [tagsStyle] = useTrail(
-    project.tags.length,
+    project.tags.length > MAX_RENDERED_TAGS
+      ? MAX_RENDERED_TAGS
+      : project.tags.length,
     () => ({
       from: {
         y: 50,
@@ -45,7 +52,7 @@ export function ProjectPreview(props: ProjectPreviewProps) {
       },
       reset: true,
     }),
-    [tagsInView]
+    [tagsInView, project.tags.length]
   )
 
   const handleEditProject = () => {
@@ -56,7 +63,7 @@ export function ProjectPreview(props: ProjectPreviewProps) {
     <article
       className='project-preview'
       onClick={() => props.onClick(project._id)}>
-      <a.h1 ref={titleRef} style={titleSprings}>
+      <a.h1 ref={titleRef} style={titleSprings} className='heading'>
         {project.name}
       </a.h1>
 
@@ -73,16 +80,19 @@ export function ProjectPreview(props: ProjectPreviewProps) {
         </Carousel>
       </div>
 
-      <a.ul
-        className='d-flex flex-wrap gap-5 flex-grow-1'
-        ref={tagsRef}>
+      <a.ul className='project-tags-list' ref={tagsRef}>
         {tagsInView &&
-          tagsStyle.map((tagStyle, i) => (
+          tagsStyle.slice(0, MAX_RENDERED_TAGS).map((tagStyle, i) => (
             <a.li key={project.tags[i]} style={tagStyle}>
               <Tag color='#597ef7'>{project.tags[i]}</Tag>
             </a.li>
           ))}
+        {project.tags.length > MAX_RENDERED_TAGS && (
+          <span style={{ color: '#597ef7' }}>...</span>
+        )}
       </a.ul>
+
+      <span className='flex-grow-1'></span>
 
       <div className='ant-btn-group' onClick={(e) => e.stopPropagation()}>
         <a href={project.websiteUrl} target='_blank' rel='noreferrer'>
@@ -103,13 +113,17 @@ export function ProjectPreview(props: ProjectPreviewProps) {
   )
 }
 
+const iconSize = {
+  width: 25,
+  height: 25,
+}
+
 function SlickNextArrow(props: any) {
   const { className, style, onClick } = props
   return (
-    <BsArrowRightCircle
-      fontSize={48}
+    <BsArrowRightCircleFill
       className={className}
-      style={{ ...style, display: 'block' }}
+      style={{ ...style, ...iconSize, display: 'block' }}
       onClick={onClick}
     />
   )
@@ -118,10 +132,9 @@ function SlickNextArrow(props: any) {
 function SlickPrevArrow(props: any) {
   const { className, style, onClick } = props
   return (
-    <BsArrowLeftCircle
-      fontSize={48}
+    <BsArrowLeftCircleFill
       className={className}
-      style={{ ...style, display: 'block' }}
+      style={{ ...style, ...iconSize, display: 'block' }}
       onClick={onClick}
     />
   )

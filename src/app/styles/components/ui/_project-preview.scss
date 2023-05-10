@@ -1,18 +1,26 @@
 .project-preview {
-  padding: rem(10px);
   transition: 0.3s ease-in-out;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: rem(10px);
   height: 100%;
   background-color: rgba(255, 255, 255, 0.3);
-  // For carousel arrows
-  padding-inline: rem(25px);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.414);
 
-  & h1 {
-    margin-block-start: 0;
+  & .heading {
+    margin: 0;
+    padding: 15px 6px;
+    background-color: #203467;
+    color: white;
+    text-align: center;
   }
+}
+
+.project-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 5px;
 }
 
 .carousel-dots-controls {
@@ -24,18 +32,19 @@
 
 .ant-carousel .slick-prev,
 .ant-carousel .slick-next {
-  font-size: inherit;
-  color: currentColor;
+  // font-size: inherit;
+  font-size: 30px;
+  color: #203467;
   z-index: 222;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, color 0.3s;
   opacity: 0;
 }
 
 .ant-carousel .slick-prev {
-  inset-inline-start: -22px;
+  inset-inline-start: 10px;
 }
 .ant-carousel .slick-next {
-  inset-inline-end: -22px;
+  inset-inline-end: 10px;
 }
 
 .project-preview:hover .slick-prev,
@@ -45,5 +54,5 @@
 
 .ant-carousel .slick-next:hover,
 .ant-carousel .slick-prev:hover {
-  color: gray;
+  color: gainsboro;
 }

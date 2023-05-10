@@ -12,7 +12,7 @@ export function ProjectsSection(props: ProjectListProps) {
       <div className='container'>
         <div className='row gy-3'>
           {props.projects.map((p) => (
-            <div className='col-md-4' key={p._id}>
+            <div className='col-md-4 col-lg-3' key={p._id}>
               <ProjectPreview
                 project={p}
                 onClick={(id) => props.onProjectClick(id)}

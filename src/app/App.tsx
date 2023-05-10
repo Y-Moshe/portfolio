@@ -34,7 +34,7 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const parallaxRef = useRef<IParallax>(null)
-  const isDesktop = useMediaQuery({ minWidth: 768 })
+  const isDesktop = useMediaQuery({ minWidth: 992 })
   const [currentPage, setCurrentPage] = useState(0)
 
   useEffect(() => {
