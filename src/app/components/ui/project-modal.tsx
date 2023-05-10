@@ -6,7 +6,7 @@ import { FiLink } from 'react-icons/fi'
 import { IProject } from '@/types'
 
 interface ProjectModalProps {
-  project?: IProject
+  project: IProject | null
   isOpen: boolean
   onClose: () => void
 }

@@ -29,7 +29,7 @@ declare global {
 
 export default function App() {
   const [projectList, setProjectList] = useState<IProject[]>([])
-  const [selectedProject, setSelectedProject] = useState<IProject>()
+  const [selectedProject, setSelectedProject] = useState<IProject | null>(null)
   const [skillList, setSkillList] = useState<ISkill[]>([])
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -87,8 +87,15 @@ export default function App() {
   const handleProjectClicked = (projectId: string) => {
     // const project = portfolioService.getProject(projectId)
     const project = projectList.find((p) => p._id === projectId)
-    setSelectedProject(project)
-    setIsModalOpen(true)
+    if (project) {
+      setSelectedProject(project)
+      setIsModalOpen(true)
+    }
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedProject(null)
   }
 
   const handlePageChange = (page: number) => {
@@ -143,7 +150,7 @@ export default function App() {
       {/* Project modal */}
       <ProjectModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={handleCloseModal}
         project={selectedProject}
       />
     </Parallax>

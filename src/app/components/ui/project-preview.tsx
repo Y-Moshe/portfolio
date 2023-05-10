@@ -12,7 +12,7 @@ import { IProject } from '@/types'
 import { eventBus } from '@/services'
 import { events } from '@/services/event-bus.service'
 
-const { REACT_APP_IS_EDIT_MODE } = process.env
+const REACT_APP_IS_EDIT_MODE = JSON.parse(process.env.REACT_APP_IS_EDIT_MODE)
 const MAX_RENDERED_TAGS = 5
 
 interface ProjectPreviewProps {
@@ -69,6 +69,7 @@ export function ProjectPreview(props: ProjectPreviewProps) {
 
       <div onClick={(e) => e.stopPropagation()}>
         <Carousel
+          className={project.imgUrls.length > 1 ? 'drag-mouse' : 'undragable'}
           dots={{ className: 'carousel-dots-controls' }}
           arrows={true}
           prevArrow={<SlickPrevArrow />}

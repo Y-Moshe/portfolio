@@ -30,6 +30,17 @@
   margin: 0 !important;
 }
 
+.ant-carousel .undragable {
+  cursor: default;
+}
+
+.ant-carousel .drag-mouse {
+  cursor: grab;
+}
+.ant-carousel .drag-mouse:active {
+  cursor: grabbing;
+}
+
 .ant-carousel .slick-prev,
 .ant-carousel .slick-next {
   // font-size: inherit;
