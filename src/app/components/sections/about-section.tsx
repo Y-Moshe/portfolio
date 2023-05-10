@@ -24,7 +24,7 @@ export function AboutSection(props: IAboutSectionProps) {
   }
 
   return (
-    <section className='about-section full'>
+    <section className='about-section section-view full'>
       <a.div className='profile-wrapper' style={style}>
         <div className='container'>
           <div className='row'>

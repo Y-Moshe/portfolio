@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {
   // eslint-disable-next-line
   AppHeader,
@@ -9,7 +9,6 @@ import {
   AboutSection,
   ProjectEdit,
 } from '@/components'
-import { IParallax, Parallax, ParallaxLayer } from '@react-spring/parallax'
 import { useMediaQuery } from 'react-responsive'
 
 import { portfolioService } from '@/services'
@@ -33,7 +32,6 @@ export default function App() {
   const [skillList, setSkillList] = useState<ISkill[]>([])
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const parallaxRef = useRef<IParallax>(null)
   const isDesktop = useMediaQuery({ minWidth: 992 })
   const [currentPage, setCurrentPage] = useState(0)
 
@@ -51,7 +49,7 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    parallaxRef.current?.scrollTo(currentPage)
+    // TODO
   }, [currentPage])
 
   useEffect(() => {
@@ -103,56 +101,28 @@ export default function App() {
   }
 
   return (
-    <Parallax pages={4} ref={parallaxRef}>
-      <div className='app-background'></div>
+    <div className='main-layout app-background'>
+      {/* <AppHeader activePage={currentPage} onLinkClick={handlePageChange} /> */}
 
-      {/* App header */}
-      {/* <ParallaxLayer
-        sticky={{ start: 0, end: 4 }}
-        style={{ height: 'max-content' }}>
-        {parallaxRef.current && (
-          <AppHeader activePage={currentPage} onLinkClick={handlePageChange} />
-        )}
-      </ParallaxLayer> */}
+      <AboutSection onLinkClick={handlePageChange} />
+      <div className='placeholder-view'></div>
 
-      {/* About section */}
-      <ParallaxLayer
-        offset={0}
-        speed={isDesktop ? 1 : 0.5}
-        className='main-layout'>
-        {parallaxRef.current && <AboutSection onLinkClick={handlePageChange} />}
-      </ParallaxLayer>
+      <ProjectsSection
+        projects={projectList}
+        onProjectClick={handleProjectClicked}
+      />
+      <div className='placeholder-view'></div>
 
-      {/* Projects section */}
-      <ParallaxLayer
-        offset={1}
-        speed={isDesktop ? 1 : 0.5}
-        className='main-layout full'>
-        <ProjectsSection
-          projects={projectList}
-          onProjectClick={handleProjectClicked}
-        />
-      </ParallaxLayer>
+      <SkillsSection skills={skillList} />
+      <div className='placeholder-view'></div>
 
-      {/* Skills section */}
-      <ParallaxLayer
-        offset={2}
-        speed={isDesktop ? 1 : 0.5}
-        className='main-layout'>
-        <SkillsSection skills={skillList} />
-      </ParallaxLayer>
+      {REACT_APP_IS_EDIT_MODE ? <ProjectEdit /> : <ContactSection />}
 
-      {/* Contact / Project edit sections */}
-      <ParallaxLayer offset={3} speed={0.5} className='main-layout'>
-        {REACT_APP_IS_EDIT_MODE ? <ProjectEdit /> : <ContactSection />}
-      </ParallaxLayer>
-
-      {/* Project modal */}
       <ProjectModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         project={selectedProject}
       />
-    </Parallax>
+    </div>
   )
 }
