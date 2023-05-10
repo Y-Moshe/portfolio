@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { TypeAnimation } from 'react-type-animation'
+import { a, useSpring } from '@react-spring/web'
 
 import { FallingArrow } from '@/components'
 
@@ -9,6 +10,14 @@ interface IAboutSectionProps {
 
 export function AboutSection(props: IAboutSectionProps) {
   const [isGreetingFinished, setIsGreetingFinished] = useState(false)
+  const [style] = useSpring(() => ({
+    from: {
+      opacity: 0,
+    },
+    to: {
+      opacity: 1,
+    },
+  }))
 
   const scrollToProjects = () => {
     props.onLinkClick(1)
@@ -16,7 +25,7 @@ export function AboutSection(props: IAboutSectionProps) {
 
   return (
     <section className='about-section full'>
-      <div className='profile-wrapper'>
+      <a.div className='profile-wrapper' style={style}>
         <div className='container'>
           <div className='row'>
             {/* <div className='offser-lg-3'>
@@ -57,7 +66,7 @@ export function AboutSection(props: IAboutSectionProps) {
             </div>
           </div>
         </div>
-      </div>
+      </a.div>
 
       <div className='gradient-background'></div>
       <FallingArrow className='arrow-down' onClick={scrollToProjects} />

@@ -100,13 +100,13 @@ export default function App() {
       <div className='app-background'></div>
 
       {/* App header */}
-      <ParallaxLayer
+      {/* <ParallaxLayer
         sticky={{ start: 0, end: 4 }}
         style={{ height: 'max-content' }}>
         {parallaxRef.current && (
           <AppHeader activePage={currentPage} onLinkClick={handlePageChange} />
         )}
-      </ParallaxLayer>
+      </ParallaxLayer> */}
 
       {/* About section */}
       <ParallaxLayer
