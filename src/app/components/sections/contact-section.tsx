@@ -29,7 +29,7 @@ export function ContactSection() {
   }
 
   return (
-    <section className='contact-section section-view'>
+    <section className='contact-section section-view' id='contact-section'>
       <div className='form-wrapper'>
         <div className='container contact-frame'>
           <div className='row'>

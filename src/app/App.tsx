@@ -10,9 +10,12 @@ import {
   ProjectEdit,
 } from '@/components'
 import { useMediaQuery } from 'react-responsive'
+import { Parallax } from 'react-parallax'
 
 import { portfolioService } from '@/services'
 import { IProject, ISkill } from '@/types'
+import aboutBgImgUrl from 'src/assets/img/about-bg.jpg'
+import projectsBgImgUrl from 'src/assets/img/projects.jpg'
 import pkg from '../../package.json'
 
 const REACT_APP_IS_EDIT_MODE = JSON.parse(process.env.REACT_APP_IS_EDIT_MODE)
@@ -20,7 +23,7 @@ const REACT_APP_IS_EDIT_MODE = JSON.parse(process.env.REACT_APP_IS_EDIT_MODE)
 declare global {
   interface Window {
     MyApp: {
-      isDesktop: boolean
+      // isDesktop: boolean
       isModalOpen: boolean
     }
   }
@@ -31,8 +34,6 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState<IProject | null>(null)
   const [skillList, setSkillList] = useState<ISkill[]>([])
   const [isModalOpen, setIsModalOpen] = useState(false)
-
-  const isDesktop = useMediaQuery({ minWidth: 992 })
   const [currentPage, setCurrentPage] = useState(0)
 
   useEffect(() => {
@@ -49,20 +50,42 @@ export default function App() {
   }, [])
 
   useEffect(() => {
+    let sectionId = 'about-section'
     // TODO
+    switch (currentPage) {
+      case 1:
+        sectionId = 'projects-section'
+
+        break
+      case 2:
+        sectionId = 'skills-section'
+
+        break
+      case 3:
+        sectionId = 'contact-section'
+        break
+
+      default:
+        sectionId = 'about-section'
+        break
+    }
+
+    document.getElementById(sectionId)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    })
   }, [currentPage])
 
   useEffect(() => {
     window.MyApp = {
-      isDesktop,
       isModalOpen,
     }
-  }, [isDesktop, isModalOpen])
+  }, [isModalOpen])
 
   const handleWheelScroll = useCallback((e: WheelEvent) => {
     // Auto scrolling by mouse wheel enabled only for desktops
 
-    if (window.MyApp?.isDesktop && !window.MyApp?.isModalOpen) {
+    if (!window.MyApp?.isModalOpen) {
       e.deltaY > 0
         ? setCurrentPage((prev) => (prev === 3 ? 3 : ++prev))
         : setCurrentPage((prev) => (prev === 0 ? 0 : --prev))
@@ -104,13 +127,25 @@ export default function App() {
     <div className='main-layout app-background'>
       {/* <AppHeader activePage={currentPage} onLinkClick={handlePageChange} /> */}
 
-      <AboutSection onLinkClick={handlePageChange} />
+      <Parallax
+        bgImage={aboutBgImgUrl}
+        className='full'
+        bgImageSizes='cover'
+        strength={200}>
+        <AboutSection onLinkClick={handlePageChange} />
+      </Parallax>
       <div className='placeholder-view'></div>
 
-      <ProjectsSection
-        projects={projectList}
-        onProjectClick={handleProjectClicked}
-      />
+      <Parallax
+        bgImage={projectsBgImgUrl}
+        className='full'
+        bgImageSizes='100% 100%'
+        strength={250}>
+        <ProjectsSection
+          projects={projectList}
+          onProjectClick={handleProjectClicked}
+        />
+      </Parallax>
       <div className='placeholder-view'></div>
 
       <SkillsSection skills={skillList} />

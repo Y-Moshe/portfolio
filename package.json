@@ -1,10 +1,9 @@
 {
   "name": "portfolio",
-  "version": "0.8.0",
+  "version": "1.0.0",
   "private": false,
   "dependencies": {
     "@craco/craco": "^7.0.0",
-    "@react-spring/parallax": "^9.7.1",
     "@react-spring/web": "^9.7.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -21,6 +20,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
+    "react-parallax": "^3.5.1",
     "react-responsive": "^9.0.2",
     "react-scripts": "5.0.1",
     "react-type-animation": "^3.0.1",

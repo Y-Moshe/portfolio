@@ -8,7 +8,7 @@ interface ProjectListProps {
 
 export function ProjectsSection(props: ProjectListProps) {
   return (
-    <section className='projects-section section-view full'>
+    <section className='projects-section section-view' id='projects-section'>
       <div className='container'>
         <div className='row gy-3'>
           {props.projects.map((p) => (

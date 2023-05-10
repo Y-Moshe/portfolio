@@ -1744,14 +1744,6 @@
     "@react-spring/shared" "~9.7.1"
     "@react-spring/types" "~9.7.1"
 
-"@react-spring/parallax@^9.7.1":
-  version "9.7.1"
-  resolved "https://registry.yarnpkg.com/@react-spring/parallax/-/parallax-9.7.1.tgz#75014daa8f528708bd68814030129ad059dc7b3d"
-  integrity sha512-1wBgDYaewB8CHdMWa2O3C2Cfvq2mt+neQLZz3+zHTH0CRUlbzC8Hsm78BCDiK8I1QzpLCtgwvv2rYAJchQuZ1A==
-  dependencies:
-    "@react-spring/shared" "~9.7.1"
-    "@react-spring/web" "~9.7.1"
-
 "@react-spring/rafz@~9.7.1":
   version "9.7.1"
   resolved "https://registry.yarnpkg.com/@react-spring/rafz/-/rafz-9.7.1.tgz#bdfea463fcb5ddc4e7253a8fa3870dd52ebbc59a"
@@ -1770,7 +1762,7 @@
   resolved "https://registry.yarnpkg.com/@react-spring/types/-/types-9.7.1.tgz#b540752a479d210c6fb68d2b1d5ff35556df4308"
   integrity sha512-yBcyfKUeZv9wf/ZFrQszvhSPuDx6Py6yMJzpMnS+zxcZmhXPeOCKZSHwqrUz1WxvuRckUhlgb7eNI/x5e1e8CA==
 
-"@react-spring/web@^9.7.1", "@react-spring/web@~9.7.1":
+"@react-spring/web@^9.7.1":
   version "9.7.1"
   resolved "https://registry.yarnpkg.com/@react-spring/web/-/web-9.7.1.tgz#a9ee730d06c686b8432cd20f41683b1acb9b6300"
   integrity sha512-6uUE5MyKqdrJnIJqlDN/AXf3i8PjOQzUuT26nkpsYxUGOk7c+vZVPcfrExLSoKzTb9kF0i66DcqzO5fXz/Z1AA==
@@ -8313,6 +8305,11 @@ react-is@^18.0.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
+
+react-parallax@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/react-parallax/-/react-parallax-3.5.1.tgz#73071679371b7738e21ffac8daa0bc3cb7e5174d"
+  integrity sha512-p5zPsPsqELlIOGaPS01O0IRx8R2bxcBAtrdF/RHf9nIxxk5hijbM2y89tk4rJQBcNH6ESSLe7J2NV4/ms7FLFw==
 
 react-refresh@^0.11.0:
   version "0.11.0"
