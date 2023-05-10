@@ -95,11 +95,19 @@ export function ProjectPreview(props: ProjectPreviewProps) {
 
       <span className='flex-grow-1'></span>
 
-      <div className='ant-btn-group' onClick={(e) => e.stopPropagation()}>
-        <a href={project.websiteUrl} target='_blank' rel='noreferrer'>
+      <div className='ant-btn-group my-2'>
+        <a
+          href={project.websiteUrl}
+          target='_blank'
+          rel='noreferrer'
+          onClick={(e) => e.stopPropagation()}>
           <Button type='text' size='large' icon={<FiLink size={24} />} />
         </a>
-        <a href={project.githubUrl} target='_blank' rel='noreferrer'>
+        <a
+          href={project.githubUrl}
+          target='_blank'
+          rel='noreferrer'
+          onClick={(e) => e.stopPropagation()}>
           <Button type='text' size='large' icon={<BsGithub size={24} />} />
         </a>
         {REACT_APP_IS_EDIT_MODE && (
@@ -107,6 +115,7 @@ export function ProjectPreview(props: ProjectPreviewProps) {
             type='text'
             size='large'
             icon={<AiFillEdit size={24} onClick={handleEditProject} />}
+            onClick={(e) => e.stopPropagation()}
           />
         )}
       </div>
