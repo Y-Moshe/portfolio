@@ -23,10 +23,12 @@
 .app-background {
   background-image: url('../../assets/img/app-bg.jpg');
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  // height: 100%;
-  // width: 100%;
+  background-size: 100% 100%;
+  
+  @include media-breakpoint-up('md') {
+    background-attachment: fixed;
+    background-size: cover;
+  }
 }
 
 .section-view {
