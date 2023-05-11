@@ -29,9 +29,9 @@ export function ContactSection() {
   }
 
   return (
-    <section className='contact-section section-view' id='contact-section'>
-      <div className='form-wrapper'>
-        <div className='container contact-frame'>
+    <section className='contact-section section-view full' id='contact-section'>
+      <div className='contact-frame'>
+        <div className='container'>
           <div className='row'>
             <div className='col-lg-5 order-1 order-lg-0'>
               <div className='contact-img-wrapper'>
