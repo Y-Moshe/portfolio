@@ -4,6 +4,7 @@ import {
   BsArrowLeftCircleFill,
   BsArrowRightCircleFill,
 } from 'react-icons/bs'
+import { MdOpenInNew } from 'react-icons/md'
 import { AiFillEdit } from 'react-icons/ai'
 import { FiLink } from 'react-icons/fi'
 import { useInView, animated as a, useTrail } from '@react-spring/web'
@@ -80,10 +81,10 @@ export function ProjectPreview(props: ProjectPreviewProps) {
 
       <a.ul className='project-tags-list' ref={tagsRef}>
         {tagsStyle.slice(0, MAX_RENDERED_TAGS).map((tagStyle, i) => (
-            <a.li key={project.tags[i]} style={tagStyle}>
-              <Tag color='#597ef7'>{project.tags[i]}</Tag>
-            </a.li>
-          ))}
+          <a.li key={project.tags[i]} style={tagStyle}>
+            <Tag color='#597ef7'>{project.tags[i]}</Tag>
+          </a.li>
+        ))}
         {project.tags.length > MAX_RENDERED_TAGS && (
           <span style={{ color: '#597ef7' }}>...</span>
         )}
@@ -91,7 +92,7 @@ export function ProjectPreview(props: ProjectPreviewProps) {
 
       <span className='flex-grow-1'></span>
 
-      <div className='ant-btn-group my-2'>
+      <div className='d-flex gap-5 m-2'>
         <a
           href={project.websiteUrl}
           target='_blank'
@@ -100,12 +101,14 @@ export function ProjectPreview(props: ProjectPreviewProps) {
           <Button type='text' size='large' icon={<FiLink size={24} />} />
         </a>
         <a
+          className='flex-grow-1'
           href={project.githubUrl}
           target='_blank'
           rel='noreferrer'
           onClick={(e) => e.stopPropagation()}>
           <Button type='text' size='large' icon={<BsGithub size={24} />} />
         </a>
+
         {REACT_APP_IS_EDIT_MODE && (
           <Button
             type='text'
@@ -114,6 +117,8 @@ export function ProjectPreview(props: ProjectPreviewProps) {
             onClick={(e) => e.stopPropagation()}
           />
         )}
+
+        <Button type='text' size='large' icon={<MdOpenInNew size={24} />} />
       </div>
     </article>
   )
