@@ -1,12 +1,7 @@
 .contact-section {
-  @extend .section-view;
-  padding-bottom: 100px;
-  
-  @media (min-width: 992px) {
-    padding-bottom: 15px;
-  }
+  padding-bottom: 15px;
 
-  & .form-wrapper {
+  & .contact-frame {
     --s: 15px; /* control the size */
     padding: var(--s);
     border: calc(2 * var(--s)) solid #0000;

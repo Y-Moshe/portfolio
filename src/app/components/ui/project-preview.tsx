@@ -30,9 +30,6 @@ export function ProjectPreview(props: ProjectPreviewProps) {
       opacity: 1,
       y: 0,
     },
-    config: {
-      duration: 500,
-    },
   }))
 
   const { project } = props
@@ -82,8 +79,7 @@ export function ProjectPreview(props: ProjectPreviewProps) {
       </div>
 
       <a.ul className='project-tags-list' ref={tagsRef}>
-        {tagsInView &&
-          tagsStyle.slice(0, MAX_RENDERED_TAGS).map((tagStyle, i) => (
+        {tagsStyle.slice(0, MAX_RENDERED_TAGS).map((tagStyle, i) => (
             <a.li key={project.tags[i]} style={tagStyle}>
               <Tag color='#597ef7'>{project.tags[i]}</Tag>
             </a.li>
