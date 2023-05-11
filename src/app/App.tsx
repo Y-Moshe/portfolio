@@ -71,7 +71,7 @@ export default function App() {
 
     document.getElementById(sectionId)?.scrollIntoView({
       behavior: 'smooth',
-      block: 'center',
+      block: 'start',
     })
   }, [currentPage])
 
