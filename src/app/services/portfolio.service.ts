@@ -1,6 +1,7 @@
 import Axios from 'axios'
 
 import { IProject, ISkill } from '@/types'
+import { DefaultOptionType } from 'antd/es/select'
 
 const axios = Axios.create({
   baseURL:
@@ -58,10 +59,20 @@ async function getSkills(): Promise<ISkill[]> {
   return data
 }
 
+async function getTagOptions(): Promise<DefaultOptionType[]> {
+  const res = await axios.get<FirebaseEntity<DefaultOptionType>>('tags.json')
+  const data = Object.keys(res.data).map((id) =>
+    _mapEntity<DefaultOptionType>({ [id]: res.data[id] })
+  )
+
+  return data
+}
+
 export const portfolioService = {
   getProjects,
   getProject,
   getSkills,
+  getTagOptions,
   addProject,
   updateProject,
   deleteProject,

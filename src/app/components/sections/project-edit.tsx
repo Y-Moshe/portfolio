@@ -5,33 +5,6 @@ import { DefaultOptionType } from 'antd/es/select'
 import { eventBus, portfolioService } from '@/services'
 import { events } from '@/services/event-bus.service'
 
-const tagsOptions: DefaultOptionType[] = [
-  'Sass/Scss',
-  'Bootstrap',
-  'jQuery',
-  'TypeScript',
-  'React',
-  'Redux',
-  'Angular',
-  'NgRx Store',
-  'Vuex',
-  'Pinia',
-  'Vue (Options API)',
-  'Vue (Composition API)',
-  '.NET/.NET Core',
-  'C#',
-  'NodeJS',
-  'Socket.io',
-  'WebSockets',
-  'Animate.css',
-  'Unit-testing',
-  'Backend server',
-  'MongoDB',
-  'Sqlite',
-  'Expressjs',
-  'rest API',
-].map((t) => ({ label: t, value: t }))
-
 const initialFormValue = {
   _id: '',
   name: '',
@@ -45,8 +18,14 @@ const initialFormValue = {
 export function ProjectEdit() {
   const [form] = Form.useForm()
   const [isPending, setIsPending] = useState(false)
+  const [options, setOptions] = useState<DefaultOptionType[]>([])
 
   useEffect(() => {
+    portfolioService
+      .getTagOptions()
+      .then((opts) => setOptions(opts))
+      .catch(console.log)
+
     eventBus.on(events.EDIT_PROJECT, (project: any) => {
       delete project.id
       form.setFieldsValue({ ...project })
@@ -163,7 +142,7 @@ export function ProjectEdit() {
               placeholder='Please select'
               value={form.getFieldValue('tags')}
               onChange={handleTagsChange}
-              options={tagsOptions}
+              options={options}
             />
           </Form.Item>
 
