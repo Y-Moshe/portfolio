@@ -101,13 +101,13 @@ export function ProjectPreview(props: ProjectPreviewProps) {
           <Button type='text' size='large' icon={<FiLink size={24} />} />
         </a>
         <a
-          className='flex-grow-1'
           href={project.githubUrl}
           target='_blank'
           rel='noreferrer'
           onClick={(e) => e.stopPropagation()}>
           <Button type='text' size='large' icon={<BsGithub size={24} />} />
         </a>
+        <span className='flex-grow-1'></span>
 
         {REACT_APP_IS_EDIT_MODE && (
           <Button
