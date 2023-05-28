@@ -18,7 +18,7 @@ async function getProjects(): Promise<IProject[]> {
     _mapEntity<IProject>({ [id]: res.data[id] })
   )
 
-  return data
+  return data.sort((a, b) => a.order - b.order)
 }
 
 async function getProject(id: string): Promise<IProject | null> {

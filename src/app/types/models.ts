@@ -9,6 +9,7 @@ export interface IProject extends BaseModel {
   imgUrls: string[]
   githubUrl: string
   websiteUrl: string
+  order: number
 }
 
 export interface ISkill extends BaseModel {
