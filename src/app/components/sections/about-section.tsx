@@ -54,10 +54,7 @@ export function AboutSection(props: IAboutSectionProps) {
                     Known as a great problem-solver, self-driven, and a quick learner. Follows by best practices.\n
                     Highly motivated, focused, and well-organized with good interpersonal and communication skills.\n
                   
-                    My experience has been gained through learning and building projects, which are listed next.\n
-                    Graduate of the Coding Academy course - an intensive coding Bootcamp (640 hours) that qualifies Full stack developers.\n
-                  
-                    My Latest project: Toyz shop - in the listed projects below.`,
+                    My experience has been gained through learning and building projects, which are listed next`,
                     1000,
                   ]}
                   speed={80}
