@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
-  // eslint-disable-next-line
   AppHeader,
   ProjectsSection,
   SkillsSection,
@@ -19,15 +18,6 @@ import pkg from '../../package.json'
 
 const REACT_APP_IS_EDIT_MODE = JSON.parse(process.env.REACT_APP_IS_EDIT_MODE)
 
-declare global {
-  interface Window {
-    MyApp: {
-      // isDesktop: boolean
-      isModalOpen: boolean
-    }
-  }
-}
-
 export default function App() {
   const [projectList, setProjectList] = useState<IProject[]>([])
   const [selectedProject, setSelectedProject] = useState<IProject | null>(null)
@@ -41,24 +31,13 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    window.addEventListener('wheel', handleWheelScroll)
-    return () => {
-      window.removeEventListener('wheel', handleWheelScroll)
-    }
-    // eslint-disable-next-line
-  }, [])
-
-  useEffect(() => {
     let sectionId = 'about-section'
-    // TODO
     switch (currentPage) {
       case 1:
         sectionId = 'projects-section'
-
         break
       case 2:
         sectionId = 'skills-section'
-
         break
       case 3:
         sectionId = 'contact-section'
@@ -74,22 +53,6 @@ export default function App() {
       block: 'start',
     })
   }, [currentPage])
-
-  useEffect(() => {
-    window.MyApp = {
-      isModalOpen,
-    }
-  }, [isModalOpen])
-
-  const handleWheelScroll = useCallback((e: WheelEvent) => {
-    // Auto scrolling by mouse wheel enabled only for desktops
-
-    if (!window.MyApp?.isModalOpen) {
-      e.deltaY > 0
-        ? setCurrentPage((prev) => (prev === 3 ? 3 : ++prev))
-        : setCurrentPage((prev) => (prev === 0 ? 0 : --prev))
-    }
-  }, [])
 
   const loadAppContent = async () => {
     try {
@@ -124,7 +87,7 @@ export default function App() {
 
   return (
     <div className='main-layout app-background'>
-      {/* <AppHeader activePage={currentPage} onLinkClick={handlePageChange} /> */}
+      <AppHeader activePage={currentPage} onLinkClick={handlePageChange} />
 
       <Parallax
         bgImage={aboutBgImgUrl}
