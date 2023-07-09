@@ -24,7 +24,7 @@
   background-image: url('../../assets/img/app-bg.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  
+
   @include media-breakpoint-up('md') {
     background-attachment: fixed;
     background-size: cover;
@@ -32,7 +32,7 @@
 }
 
 .section-view {
-  min-height: calc(100vh - $headerHeight);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

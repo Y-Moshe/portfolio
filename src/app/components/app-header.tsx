@@ -4,21 +4,21 @@ import { animated as a, useSpring, useTrail } from '@react-spring/web'
 const links = [
   {
     label: 'Projects',
-    page: 1,
+    sectionId: 'projects-section',
   },
   {
     label: 'Skills',
-    page: 2,
+    sectionId: 'skills-section',
   },
   {
     label: 'Contact',
-    page: 3,
+    sectionId: 'contact-section',
   },
 ]
 
 interface IAppHeaderProps {
-  activePage: number
-  onLinkClick: (page: number) => void
+  activeSection: string
+  onLinkClick: (sectionId: string) => void
 }
 
 export function AppHeader(props: IAppHeaderProps) {
@@ -51,19 +51,20 @@ export function AppHeader(props: IAppHeaderProps) {
 
   const [isInstersected, setIsInstersected] = useState(false)
 
-  const getActivePageClass = (page: number) =>
-    props.activePage === page ? 'active-page' : ''
+  const getLinkActiveClass = (sectionId: string) =>
+    props.activeSection === sectionId ? 'active' : ''
 
   const handleHeaderVisibility: IntersectionObserverCallback = ([target]) =>
     setIsInstersected(target.isIntersecting)
 
+  // Setup IntersectionObserver
   useEffect(() => {
-    const observer = new IntersectionObserver(handleHeaderVisibility)
-    const target = document.querySelector('.intersection-control')!
-    observer.observe(target)
+    const headerObserver = new IntersectionObserver(handleHeaderVisibility)
+    const elTarget = document.querySelector('.intersection-control')!
+    headerObserver.observe(elTarget)
 
     return () => {
-      observer.unobserve(target)
+      headerObserver.unobserve(elTarget)
     }
   }, [])
 
@@ -81,18 +82,19 @@ export function AppHeader(props: IAppHeaderProps) {
         style={initAnimation}>
         <nav className='main-nav'>
           <div
-            className={`brand ${getActivePageClass(0)}`}
-            onClick={() => props.onLinkClick(0)}>
-            Moshe Nehemiah
+            className={`brand nav-link ${getLinkActiveClass('about-section')}`}
+            onClick={() => props.onLinkClick('about-section')}
+            title='Moshe Nehemiah'>
+            MN
           </div>
 
-          <ul className='d-flex gap-15'>
+          <ul className='d-flex gap-15 h-100'>
             {linksSpring.map((springStyle, i) => (
               <a.li
-                className={getActivePageClass(links[i].page)}
+                className={`nav-link ${getLinkActiveClass(links[i].sectionId)}`}
                 style={springStyle}
                 key={links[i].label}
-                onClick={() => props.onLinkClick(links[i].page)}>
+                onClick={() => props.onLinkClick(links[i].sectionId)}>
                 {links[i].label}
               </a.li>
             ))}

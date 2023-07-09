@@ -5,7 +5,7 @@ import { a, useSpring } from '@react-spring/web'
 import { FallingArrow } from '@/components'
 
 interface IAboutSectionProps {
-  onLinkClick: (page: number) => void
+  onArrowClick: (sectionId: string) => void
 }
 
 export function AboutSection(props: IAboutSectionProps) {
@@ -18,10 +18,6 @@ export function AboutSection(props: IAboutSectionProps) {
       opacity: 1,
     },
   }))
-
-  const scrollToProjects = () => {
-    props.onLinkClick(1)
-  }
 
   return (
     <section className='about-section section-view' id='about-section'>
@@ -66,7 +62,10 @@ export function AboutSection(props: IAboutSectionProps) {
       </a.div>
 
       <div className='gradient-background'></div>
-      <FallingArrow className='arrow-down' onClick={scrollToProjects} />
+      <FallingArrow
+        className='arrow-down'
+        onClick={() => props.onArrowClick('projects-section')}
+      />
     </section>
   )
 }
