@@ -38,7 +38,7 @@ export default function App() {
   // Setup IntersectionObserver for each section to set navigation active link
   useEffect(() => {
     const sectionObserver = new IntersectionObserver(handleActiveSection, {
-      threshold: 0.5,
+      threshold: window.innerWidth > 768 ? 0.5 : 0,
     })
     const elTargets = document.querySelectorAll('.section-view')!
     elTargets.forEach((t) => sectionObserver.observe(t))
