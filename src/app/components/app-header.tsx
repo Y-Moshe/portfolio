@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { animated as a, useSpring, useTrail } from '@react-spring/web'
+import { Sling as Hamburger } from 'hamburger-react'
 
 const links = [
   {
@@ -22,7 +23,7 @@ interface IAppHeaderProps {
 }
 
 export function AppHeader(props: IAppHeaderProps) {
-  const [linksSpring, linksAnimCtrl] = useTrail(links.length, () => ({
+  const [linksSpring, linksSpringCtrl] = useTrail(links.length, () => ({
     from: {
       y: -100,
       opacity: 0,
@@ -38,7 +39,24 @@ export function AppHeader(props: IAppHeaderProps) {
     pause: true,
   }))
 
-  const [initAnimation] = useSpring(() => ({
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [mobileLinksSpring] = useTrail(
+    links.length,
+    () => ({
+      from: {
+        x: -100,
+        opacity: 0,
+      },
+      to: {
+        x: 0,
+        opacity: 1,
+      },
+      reset: true,
+    }),
+    [isMenuOpen]
+  )
+
+  const [widthSpring] = useSpring(() => ({
     delay: 100,
     from: {
       width: '70%',
@@ -46,8 +64,23 @@ export function AppHeader(props: IAppHeaderProps) {
     to: {
       width: '100%',
     },
-    onResolve: () => linksAnimCtrl.resume(),
+    onResolve: () => linksSpringCtrl.resume(),
   }))
+
+  const [brandSpring] = useSpring(
+    () => ({
+      from: {
+        border: '1px solid white',
+        opacity: 0,
+      },
+      to: {
+        border: '1px solid black',
+        opacity: 1,
+      },
+      reset: true,
+    }),
+    [isMenuOpen]
+  )
 
   const [isInstersected, setIsInstersected] = useState(false)
 
@@ -79,16 +112,37 @@ export function AppHeader(props: IAppHeaderProps) {
 
       <a.header
         className={`main-header main-layout full ${growClass}`}
-        style={initAnimation}>
+        style={widthSpring}>
         <nav className='main-nav'>
-          <div
-            className={`brand nav-link ${getLinkActiveClass('about-section')}`}
-            onClick={() => props.onLinkClick('about-section')}
-            title='Moshe Nehemiah'>
-            MN
-          </div>
+          {!isMenuOpen && (
+            <a.div
+              style={brandSpring}
+              className={`brand nav-link ${getLinkActiveClass(
+                'about-section'
+              )}`}
+              onClick={() => props.onLinkClick('about-section')}
+              title='Moshe Nehemiah'>
+              MN
+            </a.div>
+          )}
 
-          <ul className='d-flex gap-15 h-100'>
+          {isMenuOpen && (
+            <ul className='d-flex d-md-none gap-5 h-100'>
+              {mobileLinksSpring.map((springStyle, i) => (
+                <a.li
+                  className={`nav-link ${getLinkActiveClass(
+                    links[i].sectionId
+                  )}`}
+                  style={springStyle}
+                  key={links[i].label}
+                  onClick={() => props.onLinkClick(links[i].sectionId)}>
+                  {links[i].label}
+                </a.li>
+              ))}
+            </ul>
+          )}
+
+          <ul className='d-none d-md-flex gap-15 h-100'>
             {linksSpring.map((springStyle, i) => (
               <a.li
                 className={`nav-link ${getLinkActiveClass(links[i].sectionId)}`}
@@ -99,6 +153,16 @@ export function AppHeader(props: IAppHeaderProps) {
               </a.li>
             ))}
           </ul>
+
+          <div className='nav-link active p-0 d-md-none'>
+            <Hamburger
+              toggled={isMenuOpen}
+              toggle={setIsMenuOpen}
+              direction='right'
+              size={24}
+              rounded
+            />
+          </div>
         </nav>
       </a.header>
     </>
